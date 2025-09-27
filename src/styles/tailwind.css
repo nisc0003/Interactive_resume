@@ -10,9 +10,8 @@
 }
 
 @font-face {
-  font-family: "Montserrat_underline";
-  src: url("/fonts/MontserratUnderline-VariableFont_wght.ttf")
-    format("truetype");
+  font-family: "Montserrat_itallic";
+  src: url("/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
@@ -43,11 +42,12 @@
   --color-accent_yellow: #ffca3a;
   --color-accent_green: #8ac926;
   --color-accent_blue: #1982c4;
-  --color-accent_purple: #1982c4;
+  --color-accent_purple: #a324a1;
+  --color-accent_orange: #c46019;
 
   /*Typografi */
   --font-display1: "Montserrat", sans-serif;
-  --font-display2: "Montserrat_underline", sans-serif;
+  --font-display2: "Montserrat_itallic", sans-serif;
   --font-sans: "RadioCanadaBig", sans-serif;
 }
 
