@@ -6,14 +6,13 @@ import me from "../assets/images/me_image_wide.png";
 import Heading from "../components/Heading.astro";
 import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
-import Hero from "../components/Hero.astro";
 import Skills from "../components/Skills.astro";
 import Hero from "../components/Hero.astro";
+import Card from "../components/Card.astro";
 ---
 
 <MainLayout title="Titel">
   <Hero />
-  <Skills />
   <main class="">
     <!---_________________________________________________________________________________________________________________-->
     <section class="about_me grid lg:grid-cols-12 bg-bg1">
@@ -66,11 +65,13 @@ import Hero from "../components/Hero.astro";
         <div class="contactlist"></div>
       </div>
       <!----------------------------- skilllist ---------------------------------------->
-      <Skills />
     </section>
+    <Skills />
     <!---_________________________________________________________________________________________________________________-->
 
-    <section class="projekter"></section>
+    <section class="projekter">
+      <Card />
+    </section>
     <section class="ansøgning"></section>
   </main>
 </MainLayout>
