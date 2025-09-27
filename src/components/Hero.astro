@@ -2,8 +2,8 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Link from "../components/Link.astro";
 import { Image } from "astro:assets";
-import thumbsup from "../assets/images/thumbsup.png";
 import Heading from "../components/Heading.astro";
+import heroImage from "../assets/images/me_image_square.png"; // ✅ fixed path
 import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
 ---
@@ -12,8 +12,8 @@ import Button from "../components/Button.astro";
   class="grid place-self-center col-start-3 col-span-8 md:grid-cols-2 lg:grid-cols-12"
 >
   <img
-    src="https://placehold.co/600x600"
-    alt=""
+    src={heroImage.src}
+    alt="Me"
     class="lg:col-start-3 lg:col-span-2 lg:row-start-1 lg:row-span-2 place-self-center"
   />
   <div
@@ -24,13 +24,16 @@ import Button from "../components/Button.astro";
       type="hero"
       font="display1"
       stylingclasses="text-text-white"
-      >NICOLAI SCHOU
+    >
+      NICOLAI SCHOU
     </Heading>
     <Heading
       htmlheading="h2"
       type="hero2"
       font="display1"
-      stylingclasses="text-text-white">Multimedie design studerende</Heading
+      stylingclasses="text-text-white"
     >
+      Multimedie design studerende
+    </Heading>
   </div>
 </section>
