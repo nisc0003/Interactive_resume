@@ -1,29 +1,140 @@
 ---
-// Henter parametrene fra Astro.props
+import Mail from "../assets/Mail.svg";
+import Paperclip from "../assets/Paperclip.svg";
+import Phone from "../assets/Phone.svg";
+
 const { variant = "primary", size = "medium" } = Astro.props;
 
-//Definer den styling (Tailwind classes, der gør sig gældende for alle knapper)
-const buttonStyling = "border-2 px-16 py-4";
+/* Base styling for all buttons */
+const buttonStyling =
+  "relative min-w-[14rem] h-12 flex items-center justify-center overflow-hidden rounded-full font-medium transition-all duration-500 group px-6 border-2 border-white text-white hover:bg-white hover:text-black hover:border-white";
 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige varianter
-const variantClasses = {
-  primary:
-    "border-black hover:bg-black hover:text-white hover:-skew-x-12 transition-all duration-700" /* border-primary-500 */,
-  secondary:
-    "border-blue-500 hover:bg-blue-500 hover:border-blue-200" /* border-secondary-500 */,
-};
-
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskelligeog størrelser.
+/* Sizes */
 const sizeClasses = {
-  large: "text-4xl",
-  medium: "text-xl",
-  small: "text-large",
+  large: "text-2xl py-4 px-10",
+  medium: "text-lg py-3 px-8",
+  small: "text-base py-2 px-6",
 };
 ---
 
-<!--Sæt classes for den pågældende knap sammen ved hjælp af Astros class:list -->
-<button class:list={[buttonStyling, variantClasses[variant], sizeClasses[size]]}
-  ><slot /></button
->
+<!-- ✅ PRIVATE MAIL BUTTON -->{
+  variant === "privateMail" && (
+    <a
+      href="mailto:nschou@hotmail.com"
+      class:list={[buttonStyling, sizeClasses[size]]}
+    >
+      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-0">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_red);"
+        >
+          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
+        </span>
+        Private Mail
+      </span>
+      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-y-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_red);"
+        >
+          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
+        </span>
+        nschou@hotmail.com
+      </span>
+    </a>
+  )
+}
 
-<!-- her skal du style alle dine knapper typer samt farve og åben styling -->
+<!-- ✅ WORK MAIL BUTTON -->
+{
+  variant === "workMail" && (
+    <a
+      href="mailto:nisc0003@stud.ek.dk"
+      class:list={[buttonStyling, sizeClasses[size]]}
+    >
+      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:-translate-x-6 group-hover:opacity-0">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_yellow);"
+        >
+          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
+        </span>
+        Work Mail
+      </span>
+      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-x-6 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_yellow);"
+        >
+          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
+        </span>
+        nisc0003@stud.ek.dk
+      </span>
+    </a>
+  )
+}
+
+<!-- ✅ CALL BUTTON -->
+{
+  variant === "call" && (
+    <button id="callBtn" class:list={[buttonStyling, sizeClasses[size]]}>
+      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:-translate-x-4 group-hover:opacity-0">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_green);"
+        >
+          <img src={Phone.src} alt="Phone" class="w-4 h-4 text-white" />
+        </span>
+        Call Me
+      </span>
+      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-x-4 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_green);"
+        >
+          <img src={Phone.src} alt="Phone" class="w-4 h-4 text-white" />
+        </span>
+        61661125
+      </span>
+    </button>
+  )
+}
+
+<!-- ✅ DOWNLOAD CV BUTTON -->
+{
+  variant === "download" && (
+    <a href="/cv.pdf" download class:list={[buttonStyling, sizeClasses[size]]}>
+      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:-translate-y-6 group-hover:opacity-0">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_blue);"
+        >
+          <img src={Paperclip.src} alt="Download" class="w-4 h-4 text-white" />
+        </span>
+        Download CV
+      </span>
+      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-y-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <span
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--color-accent_blue);"
+        >
+          <img src={Paperclip.src} alt="Download" class="w-4 h-4 text-white" />
+        </span>
+        PDF ↓
+      </span>
+    </a>
+  )
+}
+
+<script>
+  // 📱 Copy phone number
+  document.addEventListener("DOMContentLoaded", () => {
+    const callBtn = document.querySelector("#callBtn");
+    if (callBtn) {
+      callBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText("61661125");
+        alert("Number copied: 61661125");
+      });
+    }
+  });
+</script>

@@ -1,36 +1,41 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Link from "../components/Link.astro";
-import { Image } from "astro:assets";
 import Heading from "../components/Heading.astro";
-import heroImage from "../assets/images/main.jpg";
 import Text from "../components/Text.astro";
-import Button from "../components/Button.astro";
+import { Image } from "astro:assets";
+import Star from "../assets/Star.svg"; // Import star icon
 ---
 
 <!-- Webudvikling -->
 <article class="bg-bg1">
   <div class="flex flex-col gap-4 p-4">
     <div
-      id="toggle-web"
-      class="flex place-items-center gap-4 border-b-1 border-text-white cursor-pointer"
+      class="flex justify-between items-center gap-4 border-b border-text-white"
     >
-      <p class="text-accent_blue">⬤</p>
-      <Heading
-        htmlheading="h2"
-        type="div_heading"
-        font="display2"
-        stylingclasses="text-text-white">Webudvikling</Heading
-      >
+      <div class="flex gap-4 items-center">
+        <p class="text-accent_blue">⬤</p>
+        <Heading
+          htmlheading="h2"
+          type="div_heading"
+          font="display2"
+          stylingclasses="text-text-white"
+        >
+          Frontend Udvikling
+        </Heading>
+      </div>
+      <div class="flex gap-1">
+        {
+          Array.from({ length: 5 }).map(() => (
+            <Image src={Star} alt="star" width="20" height="20" />
+          ))
+        }
+      </div>
     </div>
-    <div
-      id="content-web"
-      class="flex flex-auto hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out"
-    >
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-    </div>
+    <ul class="flex flex-col gap-2 text-text-white">
+      <li>HTML, CSS, JavaScript</li>
+      <li>Astro, Tailwind, Alpine.js</li>
+      <li>VS Code</li>
+    </ul>
   </div>
 </article>
 
@@ -38,25 +43,69 @@ import Button from "../components/Button.astro";
 <article class="bg-bg1">
   <div class="flex flex-col gap-4 p-4">
     <div
-      id="toggle-design"
-      class="flex place-items-center gap-4 border-b-1 border-text-white cursor-pointer"
+      class="flex justify-between items-center gap-4 border-b border-text-white"
     >
-      <p class="text-accent_yellow">⬤</p>
-      <Heading
-        htmlheading="h2"
-        type="div_heading"
-        font="display2"
-        stylingclasses="text-text-white">Design og prototyping</Heading
-      >
+      <div class="flex gap-4 items-center">
+        <p class="text-accent_yellow">⬤</p>
+        <Heading
+          htmlheading="h2"
+          type="div_heading"
+          font="display2"
+          stylingclasses="text-text-white"
+        >
+          UX/UI design
+        </Heading>
+      </div>
+      <div class="flex gap-1">
+        {
+          Array.from({ length: 4 }).map(() => (
+            <Image src={Star} alt="star" width="20" height="20" />
+          ))
+        }
+      </div>
     </div>
+    <ul class="flex flex-col gap-2 text-text-white">
+      <li>Design af brugergrænseflader</li>
+      <li>Figma</li>
+      <li>Fokus på god brugeroplevelse</li>
+      <li>SEO Optimering</li>
+      <li>User Research</li>
+    </ul>
+  </div>
+</article>
+
+<!-- Adobe Pakken -->
+<article class="bg-bg1">
+  <div class="flex flex-col gap-4 p-4">
     <div
-      id="content-design"
-      class="flex flex-auto hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out"
+      class="flex justify-between items-center gap-4 border-b border-text-white"
     >
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
+      <div class="flex gap-4 items-center">
+        <p class="text-accent_green">⬤</p>
+        <Heading
+          htmlheading="h2"
+          type="div_heading"
+          font="display2"
+          stylingclasses="text-text-white"
+        >
+          Adobe Pakken
+        </Heading>
+      </div>
+      <div class="flex gap-1">
+        {
+          Array.from({ length: 3 }).map(() => (
+            <Image src={Star} alt="star" width="20" height="20" />
+          ))
+        }
+      </div>
     </div>
+    <ul class="flex flex-col gap-2 text-text-white">
+      <li>Illustrator</li>
+      <li>Photoshop</li>
+      <li>Photoshop</li>
+      <li>After Effects</li>
+      <li>Adobe Premiere Pro</li>
+    </ul>
   </div>
 </article>
 
@@ -64,151 +113,30 @@ import Button from "../components/Button.astro";
 <article class="bg-bg1">
   <div class="flex flex-col gap-4 p-4">
     <div
-      id="toggle-music"
-      class="flex place-items-center gap-4 border-b-1 border-text-white cursor-pointer"
+      class="flex justify-between items-center gap-4 border-b border-text-white"
     >
-      <p class="text-accent_red">⬤</p>
-      <Heading
-        htmlheading="h2"
-        type="div_heading"
-        font="display2"
-        stylingclasses="text-text-white">Musikproduktion og lydteknik</Heading
-      >
+      <div class="flex gap-4 items-center">
+        <p class="text-accent_red">⬤</p>
+        <Heading
+          htmlheading="h2"
+          type="div_heading"
+          font="display2"
+          stylingclasses="text-text-white"
+        >
+          Musikproduktion og lydteknik
+        </Heading>
+      </div>
+      <div class="flex gap-1">
+        {
+          Array.from({ length: 5 }).map(() => (
+            <Image src={Star} alt="star" width="20" height="20" />
+          ))
+        }
+      </div>
     </div>
-    <div
-      id="content-music"
-      class="flex flex-auto hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out"
-    >
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-    </div>
+    <ul class="flex flex-col gap-2 text-text-white">
+      <li>FL Studio</li>
+      <li>Ableton Live</li>
+    </ul>
   </div>
 </article>
-
-<!-- 3D -->
-<article class="bg-bg1">
-  <div class="flex flex-col gap-4 p-4">
-    <div
-      id="toggle-3d"
-      class="flex place-items-center gap-4 border-b-1 border-text-white cursor-pointer"
-    >
-      <p class="text-accent_green">⬤</p>
-      <Heading
-        htmlheading="h2"
-        type="div_heading"
-        font="display2"
-        stylingclasses="text-text-white">3D-modellering og animation</Heading
-      >
-    </div>
-    <div
-      id="content-3d"
-      class="flex flex-auto hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out"
-    >
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-    </div>
-  </div>
-</article>
-
-<!-- Video -->
-<article class="bg-bg1">
-  <div class="flex flex-col gap-4 p-4">
-    <div
-      id="toggle-video"
-      class="flex place-items-center gap-4 border-b-1 border-text-white cursor-pointer"
-    >
-      <p class="text-accent_purple">⬤</p>
-      <Heading
-        htmlheading="h2"
-        type="div_heading"
-        font="display2"
-        stylingclasses="text-text-white">Video- og filmproduktion</Heading
-      >
-    </div>
-    <div
-      id="content-video"
-      class="flex flex-auto hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out"
-    >
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-    </div>
-  </div>
-</article>
-
-<!-- Foto -->
-<article class="bg-bg1">
-  <div class="flex flex-col gap-4 p-4">
-    <div
-      id="toggle-photo"
-      class="flex place-items-center gap-4 border-b-1 border-text-white cursor-pointer"
-    >
-      <p class="text-accent_orange">⬤</p>
-      <Heading
-        htmlheading="h2"
-        type="div_heading"
-        font="display2"
-        stylingclasses="text-text-white"
-        >Fotoredigering og billedbehandling</Heading
-      >
-    </div>
-    <div
-      id="content-photo"
-      class="flex flex-auto hidden max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out"
-    >
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-      <img src="https://placehold.co/60x40" alt="" />
-    </div>
-  </div>
-</article>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggles = [
-      { toggle: "toggle-web", content: "content-web" },
-      { toggle: "toggle-design", content: "content-design" },
-      { toggle: "toggle-music", content: "content-music" },
-      { toggle: "toggle-3d", content: "content-3d" },
-      { toggle: "toggle-video", content: "content-video" },
-      { toggle: "toggle-photo", content: "content-photo" },
-    ];
-
-    toggles.forEach(({ toggle, content }) => {
-      const header = document.getElementById(toggle);
-      const body = document.getElementById(content);
-
-      if (header && body) {
-        header.addEventListener("click", () => {
-          const isHidden = body.classList.contains("hidden");
-
-          if (isHidden) {
-            // Show (remove hidden first so animation works)
-            body.classList.remove("hidden");
-            requestAnimationFrame(() => {
-              body.classList.remove("max-h-0", "opacity-0");
-              body.classList.add("max-h-[1000px]", "opacity-100");
-            });
-          } else {
-            // Hide with animation
-            body.classList.remove("max-h-[1000px]", "opacity-100");
-            body.classList.add("max-h-0", "opacity-0");
-
-            // After transition ends, add hidden
-            body.addEventListener(
-              "transitionend",
-              () => {
-                if (body.classList.contains("max-h-0")) {
-                  body.classList.add("hidden");
-                }
-              },
-              { once: true },
-            );
-          }
-        });
-      }
-    });
-  });
-</script>
