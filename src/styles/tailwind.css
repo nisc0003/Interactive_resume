@@ -5,18 +5,19 @@
 @import "tailwindcss-intersect";
 
 @font-face {
-  font-family: "Honk";
-  src: url("/fonts/Honk-Regular-VariableFont_MORF,SHLN.ttf") format("truetype");
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Quicksand";
-  src: url("/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
+  font-family: "Montserrat_underline";
+  src: url("/fonts/MontserratUnderline-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family: "Domine";
-  src: url("/fonts/Domine-Regular.ttf") format("truetype");
+  font-family: "RadioCanadaBig";
+  src: url("/fonts/RadioCanadaBig-VariableFont_wght.ttf") format("truetype");
 }
 
 @theme {
@@ -45,9 +46,9 @@
   --color-accent_purple: #1982c4;
 
   /*Typografi */
-  --font-display: "Honk", monospace;
-  --font-sans: "Quicksand", sans-serif;
-  --font-serif: "Domine", serif;
+  --font-display1: "Montserrat", sans-serif;
+  --font-display2: "Montserrat_underline", sans-serif;
+  --font-sans: "RadioCanadaBig", sans-serif;
 }
 
 @layer base {
