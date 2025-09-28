@@ -3,20 +3,8 @@ import Mail from "../assets/Mail.svg";
 import Paperclip from "../assets/Paperclip.svg";
 import Phone from "../assets/Phone.svg";
 
-const { variant = "primary", size = "medium" } = Astro.props;
+const { variant = "primary" } = Astro.props;
 
-/* base styling */
-const buttonStyling =
-  "relative min-w-60 w-full h-16 flex items-center justify-center overflow-hidden rounded-full font-medium transition-all duration-300 group  border-2 border-white text-white hover:bg-white hover:text-black max-w-80";
-
-/* Sizes */
-const sizeClasses = {
-  large: "text-xl py-4 px-8",
-  medium: "text-lg py-6 px-6",
-  small: "text-base py-2 px-2",
-};
-
-/* Icon colors */
 const iconColors = {
   privateMail: "bg-[var(--color-accent_red)]",
   workMail: "bg-[var(--color-accent_yellow)]",
@@ -25,22 +13,23 @@ const iconColors = {
 };
 ---
 
-<div class="max-w-xs w-full">
+<div class="w-full">
   {
     variant === "privateMail" && (
       <a
         href="mailto:nschou@hotmail.com"
-        class:list={[buttonStyling, sizeClasses[size]]}
+        class="group flex items-center py-3 px-4 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
       >
         <div
-          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
-          class:list={[iconColors[variant]]}
+          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
         >
-          <img src={Mail.src} alt="Mail" class="w-6 h-6" />
+          <img src={Mail.src} alt="Mail" class="w-5 h-5" />
         </div>
-        <div class="flex flex-col items-start flex-1">
-          <p>Privat Mail</p>
-          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div class="flex flex-col justify-center relative w-full text-center">
+          <p class="text-xl group-hover:opacity-0 transition-opacity duration-300">
+            Privat Mail
+          </p>
+          <p class="text-xl absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             nschou@hotmail.com
           </p>
         </div>
@@ -52,17 +41,18 @@ const iconColors = {
     variant === "workMail" && (
       <a
         href="mailto:nisc0003@stud.ek.dk"
-        class:list={[buttonStyling, sizeClasses[size]]}
+        class="group flex items-center py-3 px-4 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
       >
         <div
-          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
-          class:list={[iconColors[variant]]}
+          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
         >
-          <img src={Mail.src} alt="Mail" class="w-6 h-6" />
+          <img src={Mail.src} alt="Mail" class="w-5 h-5" />
         </div>
-        <div class="flex flex-col items-start flex-1">
-          <p>Studie Mail</p>
-          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div class="flex flex-col justify-center relative w-full text-center">
+          <p class="text-xl group-hover:opacity-0 transition-opacity duration-300">
+            Studie Mail
+          </p>
+          <p class="text-xl absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             nisc0003@stud.ek.dk
           </p>
         </div>
@@ -72,16 +62,20 @@ const iconColors = {
 
   {
     variant === "call" && (
-      <button id="callBtn" class:list={[buttonStyling, sizeClasses[size]]}>
+      <button
+        id="callBtn"
+        class="group flex items-center py-3 px-4 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
+      >
         <div
-          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
-          class:list={[iconColors[variant]]}
+          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
         >
-          <img src={Phone.src} alt="Phone" class="w-6 h-6" />
+          <img src={Phone.src} alt="Phone" class="w-5 h-5" />
         </div>
-        <div class="flex flex-col items-start flex-1">
-          <p>Telefonummer</p>
-          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div class="flex flex-col justify-center relative w-full text-center">
+          <p class="text-xl group-hover:opacity-0 transition-opacity duration-300">
+            Telefonnummer
+          </p>
+          <p class="text-xl absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             61661126
           </p>
         </div>
@@ -94,17 +88,18 @@ const iconColors = {
       <a
         href="/cv.pdf"
         download
-        class:list={[buttonStyling, sizeClasses[size]]}
+        class="group flex items-center py-3 px-4 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
       >
         <div
-          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
-          class:list={[iconColors[variant]]}
+          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
         >
-          <img src={Paperclip.src} alt="Download" class="w-6 h-6" />
+          <img src={Paperclip.src} alt="Download" class="w-5 h-5" />
         </div>
-        <div class="flex flex-col items-start flex-1">
-          <p>Download CV</p>
-          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div class="flex flex-col justify-center relative w-full text-center">
+          <p class="text-xl group-hover:opacity-0 transition-opacity duration-300">
+            Download CV
+          </p>
+          <p class="text-xl absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             PDF ↓
           </p>
         </div>
@@ -119,7 +114,7 @@ const iconColors = {
     if (callBtn) {
       callBtn.addEventListener("click", () => {
         navigator.clipboard.writeText("61661126");
-        alert("Number copied: 61661126");
+        alert("Nummer kopieret: 61661126");
       });
     }
   });
