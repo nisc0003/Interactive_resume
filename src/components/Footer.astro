@@ -1,11 +1,76 @@
 ---
-
+import Facebook from "../assets/Facebook.svg";
+import Instagram from "../assets/Instagram.svg";
+import LinkedIn from "../assets/Linkedin.svg";
 ---
 
-<footer class="bg-primary-500 text-white">
-  <div class="container mx-auto p-4">
-    <p>&copy; 2025</p>
+<footer class="bg-[var(--color-dgrey)] text-white py-12">
+  <div class="mx-auto max-w-7xl px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+      <!-- Logo og navn -->
+      <div class="md:col-span-2">
+        <h3 class="text-2xl font-bold mb-4">Nicolai Schou</h3>
+        <p class="text-gray-300">
+          Multimediedesign studerende med passion for webudvikling og kreative
+          løsninger.
+        </p>
+      </div>
+
+      <!-- Kontakt -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Kontakt</h4>
+        <div class="space-y-2 text-gray-300">
+          <p>
+            <a
+              href="mailto:nschou@hotmail.com"
+              class="hover:text-white hover:underline"
+            >
+              nschou@hotmail.com
+            </a>
+          </p>
+          <p>
+            <a
+              href="mailto:nisc0003@stud.eke.dk"
+              class="hover:text-white hover:underline"
+            >
+              nisc0003@stud.eke.dk
+            </a>
+          </p>
+          <p>61661125</p>
+        </div>
+      </div>
+
+      <!-- Sociale medier -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Følg mig</h4>
+        <div class="flex space-x-4">
+          <!-- Instagram -->
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">
+            <object data={Instagram.src} type="image/svg+xml" class="w-6 h-6">
+              <img src={Instagram.src} alt="Instagram" class="w-6 h-6" />
+            </object>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">
+            <object data={LinkedIn.src} type="image/svg+xml" class="w-6 h-6">
+              <img src={LinkedIn.src} alt="LinkedIn" class="w-6 h-6" />
+            </object>
+          </a>
+
+          <!-- Facebook -->
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">
+            <object data={Facebook.src} type="image/svg+xml" class="w-6 h-6">
+              <img src={Facebook.src} alt="Facebook" class="w-6 h-6" />
+            </object>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom section -->
+    <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
+      <p>© 2024 Nicolai Schou. Alle rettigheder forbeholdt.</p>
+    </div>
   </div>
 </footer>
-
-<!-- her skal du lave din footer -->
