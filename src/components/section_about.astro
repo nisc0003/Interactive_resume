@@ -2,8 +2,9 @@
 import me from "../assets/images/me_image_wide.webp";
 import Heading from "../components/Heading.astro";
 import Text from "../components/Text.astro";
-import Skills from "../components/Skills.astro";
-import Button from "./Button.astro";
+import Facebook from "../assets/Facebook.svg";
+import Instagram from "../assets/Instagram.svg";
+import LinkedIn from "../assets/Linkedin.svg";
 ---
 
 <div class="lg:col-span-7 lg:col-start-5 lg:row-start-1 lg:p-8 mt-25">
@@ -31,23 +32,58 @@ import Button from "./Button.astro";
           teksttype="brødtekst"
           stylingclasses="text-text-white leading-relaxed"
         >
-          Jeg er en kreativ og detaljeorienteret multimediedesigner-studerende
-          med stor interesse for UX og UI design. Jeg brænder for at skabe
-          løsninger, der både ser godt ud og er lette at bruge. Med baggrund i
-          bl.a. prototyping, brugerinddragelse og basal webudvikling har jeg
-          fokus på at omsætte idéer til konkrete digitale koncepter.
+          Jeg er en 23-årig multimediedesign-studerende på KEA med fokus på
+          digitalt design, UX/UI og prototyping. Jeg arbejder med at skabe
+          løsninger, der kombinerer funktionalitet og visuelt udtryk, og har
+          erfaring med Figma, designprocesser, test samt HTML, CSS og
+          JavaScript.
         </Text>
 
         <Text
           teksttype="brødtekst"
           stylingclasses="text-text-white leading-relaxed"
         >
-          Som person er jeg nysgerrig, lærenem og motiveret af at udvikle mig
-          fagligt. Jeg arbejder struktureret, men har også en kreativ tilgang,
-          hvor jeg altid prøver at finde nye og bedre måder at løse opgaver på.
+          Som designer er jeg nysgerrig, detaljeorienteret og engageret. Jeg
+          motiveres af at skabe brugervenlige koncepter og ser et praktikforløb
+          som en mulighed for både at bidrage og udvikle mig gennem konkrete
+          projekter i samarbejde med et team.
         </Text>
+        <div>
+          <h4
+            class="text-xl text-text-white leading-relaxed mb-2 uppercase mt-4"
+          >
+            Følg mig
+          </h4>
+          <div class="flex space-x-4">
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/n.schousen/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={Instagram.src} alt="Instagram" class="w-12 h-12" />
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/niscdesign/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={LinkedIn.src} alt="LinkedIn" class="w-12 h-12" />
+            </a>
+
+            <!-- Facebook -->
+            <a
+              href="https://www.facebook.com/nschousen"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={Facebook.src} alt="Facebook" class="w-12 h-12" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <Skills />
   </div>
 </div>

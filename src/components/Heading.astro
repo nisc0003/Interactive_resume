@@ -15,7 +15,7 @@ const typeClasses = {
   section_heading: "text-2xl md:text-4xl lg:text-5xl uppercase font-bold",
   div_heading: "text-2xl md:text-2xl lg:text-4xl font-semibold",
   list_heading: "text-1xl lg:text-2xl uppercase font-semibold italic",
-  card_heading: "text-1xl md:text-2xl lg:text-2xl",
+  card_heading: "text-md uppercase light text-wrap text-text-white",
 };
 
 //Definer den styling (Tailwind classes), der gør sig gældende for de forskellige skrifttyper.
@@ -28,5 +28,3 @@ const fontClasses = {
 <Htmlheading class:list={[stylingclasses, typeClasses[type], fontClasses[font]]}
   ><slot /></Htmlheading
 >
-
-<!-- her skal du lave alle typer headers, definerer farve, størrelse skrifttype osv. men hold også en åben så den kan styles individuelt -->

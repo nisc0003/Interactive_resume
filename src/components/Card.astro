@@ -4,6 +4,7 @@ import Text from "./Text.astro";
 
 const {
   title = "Projekt Titel",
+  title2 = "Projekt Titel2",
   description = "Projekt beskrivelse",
   images = [],
 } = Astro.props;
@@ -35,6 +36,9 @@ const {
       stylingclasses="text-text-white border-b-2 border-text-white pb-2"
     >
       {title}
+    </Heading>
+    <Heading htmlheading="h4" type="card_heading" stylingclasses="">
+      {title2}
     </Heading>
     <Text stylingclasses="text-text-white text-lg leading-relaxed">
       {description}
