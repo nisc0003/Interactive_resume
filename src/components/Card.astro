@@ -1,68 +1,60 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import Link from "../components/Link.astro";
-import { Image } from "astro:assets";
-import Heading from "../components/Heading.astro";
-import heroImage from "../assets/images/main.jpg";
-import Text from "../components/Text.astro";
-import Button from "../components/Button.astro";
+import Heading from "./Heading.astro";
+import Text from "./Text.astro";
+
+const {
+  title = "Projekt Titel",
+  description = "Projekt beskrivelse",
+  images = [],
+} = Astro.props;
 ---
 
-<!-- her skal  du lave card med åbent billede tekst og link osv. så du kan vise dit portfolio -->
-<section class="px-100">
-  <article class="flex px-10 py-6 bg-bg2 rounded-lg gap-4 m-10">
-    <img src="https://placehold.co/200x200" alt="" />
-    <div class="flex flex-col gap-1">
-      <Heading
-        htmlheading="h3"
-        ,
-        type="div_heading"
-        ,
-        font="display1"
-        ,
-        stylingclasses="text-text-white border-b-1 border-text-white"
-        ,>Tiltle</Heading
-      >
-      <Text stylingclasses="text-text-white"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, minima?</Text
-      >
-    </div>
-  </article>
-  <article class="flex px-10 py-6 bg-bg2 rounded-lg gap-4 m-10">
-    <img src="https://placehold.co/200x200" alt="" />
-    <div class="flex flex-col gap-1">
-      <Heading
-        htmlheading="h3"
-        ,
-        type="div_heading"
-        ,
-        font="display1"
-        ,
-        stylingclasses="text-text-white border-b-1 border-text-white"
-        ,>Tiltle</Heading
-      >
-      <Text stylingclasses="text-text-white"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, minima?</Text
-      >
-    </div>
-  </article>
-  <article class="flex px-10 py-6 bg-bg2 rounded-lg gap-4 m-10">
-    <img src="https://placehold.co/200x200" alt="" />
-    <div class="flex flex-col gap-1">
-      <Heading
-        htmlheading="h3"
-        ,
-        type="div_heading"
-        ,
-        font="display1"
-        ,
-        stylingclasses="text-text-white border-b-1 border-text-white"
-        ,>Tiltle</Heading
-      >
-      <Text stylingclasses="text-text-white"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, minima?</Text
-      >
-    </div>
-  </article>
-</section>
-<!------------------------------------------------------------------------------------>
+<article
+  class="flex px-10 py-6 bg-bg2 rounded-lg gap-8 m-10 items-center max-w-4xl mx-auto"
+>
+  <div class="flex-1 relative h-64 rounded-lg overflow-hidden">
+    {
+      images.map((image, index) => (
+        <img
+          src={image.src}
+          alt={image.alt}
+          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            index === 0 ? "opacity-100" : "opacity-0"
+          }`}
+          data-image={index}
+        />
+      ))
+    }
+  </div>
+
+  <div class="flex-1 flex flex-col gap-4">
+    <Heading
+      htmlheading="h3"
+      type="div_heading"
+      font="display1"
+      stylingclasses="text-text-white border-b-2 border-text-white pb-2"
+    >
+      {title}
+    </Heading>
+    <Text stylingclasses="text-text-white text-lg leading-relaxed">
+      {description}
+    </Text>
+    <slot />
+  </div>
+</article>
+
+<script is:inline>
+  (function () {
+    const card = document.currentScript.previousElementSibling;
+    const images = card.querySelectorAll("[data-image]");
+    let currentIndex = 0;
+
+    if (images.length > 1) {
+      setInterval(() => {
+        images[currentIndex].style.opacity = "0";
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].style.opacity = "1";
+      }, 5000);
+    }
+  })();
+</script>

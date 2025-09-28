@@ -1,0 +1,42 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+
+// Importer alle billederne
+import circlelab1 from "../assets/images/Beer-club_0000_circlelab4.webp";
+import circlelab2 from "../assets/images/Beer-club_0001_circlela3.webp";
+import circlelab3 from "../assets/images/Beer-club_0002_circlelab2.webp";
+import circlelab4 from "../assets/images/Beer-club_0003_circlelab1.webp";
+
+import alefarm1 from "../assets/images/Beer-club_0004_alefarm4.webp";
+import alefarm2 from "../assets/images/Beer-club_0005_alefarm1.webp";
+import alefarm3 from "../assets/images/Beer-club_0006_alefarm2.webp";
+import alefarm4 from "../assets/images/Beer-club_0007_alefarm3.webp";
+---
+
+<section class="px-4">
+  <!-- CircleLab Projekt -->
+  <Card
+    title="CircleLab Projekt"
+    description="Innovativ løsning til ølcirkler og smagsoplevelser"
+    images={[
+      { src: circlelab1.src, alt: "CircleLab visning 1" },
+      { src: circlelab2.src, alt: "CircleLab visning 2" },
+      { src: circlelab3.src, alt: "CircleLab visning 3" },
+      { src: circlelab4.src, alt: "CircleLab visning 4" },
+    ]}
+  />
+
+  <!-- AleFarm Projekt -->
+  <Card
+    title="AleFarm Platform"
+    description="Platform for ølentusiaster og hjemmebryggere"
+    images={[
+      { src: alefarm1.src, alt: "AleFarm visning 1" },
+      { src: alefarm2.src, alt: "AleFarm visning 2" },
+      { src: alefarm3.src, alt: "AleFarm visning 3" },
+      { src: alefarm4.src, alt: "AleFarm visning 4" },
+    ]}
+  />
+</section>

@@ -5,135 +5,121 @@ import Phone from "../assets/Phone.svg";
 
 const { variant = "primary", size = "medium" } = Astro.props;
 
-/* Base styling for all buttons */
+/* base styling */
 const buttonStyling =
-  "relative min-w-[14rem] h-12 flex items-center justify-center overflow-hidden rounded-full font-medium transition-all duration-500 group px-6 border-2 border-white text-white hover:bg-white hover:text-black hover:border-white";
+  "relative min-w-60 w-full h-16 flex items-center justify-center overflow-hidden rounded-full font-medium transition-all duration-300 group  border-2 border-white text-white hover:bg-white hover:text-black max-w-80";
 
 /* Sizes */
 const sizeClasses = {
-  large: "text-2xl py-4 px-10",
-  medium: "text-lg py-3 px-8",
-  small: "text-base py-2 px-6",
+  large: "text-xl py-4 px-8",
+  medium: "text-lg py-6 px-6",
+  small: "text-base py-2 px-2",
+};
+
+/* Icon colors */
+const iconColors = {
+  privateMail: "bg-[var(--color-accent_red)]",
+  workMail: "bg-[var(--color-accent_yellow)]",
+  call: "bg-[var(--color-accent_green)]",
+  download: "bg-[var(--color-accent_blue)]",
 };
 ---
 
-<!-- ✅ PRIVATE MAIL BUTTON -->{
-  variant === "privateMail" && (
-    <a
-      href="mailto:nschou@hotmail.com"
-      class:list={[buttonStyling, sizeClasses[size]]}
-    >
-      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:opacity-0">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_red);"
+<div class="max-w-xs w-full">
+  {
+    variant === "privateMail" && (
+      <a
+        href="mailto:nschou@hotmail.com"
+        class:list={[buttonStyling, sizeClasses[size]]}
+      >
+        <div
+          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+          class:list={[iconColors[variant]]}
         >
-          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
-        </span>
-        Private Mail
-      </span>
-      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-y-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_red);"
-        >
-          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
-        </span>
-        nschou@hotmail.com
-      </span>
-    </a>
-  )
-}
+          <img src={Mail.src} alt="Mail" class="w-6 h-6" />
+        </div>
+        <div class="flex flex-col items-start flex-1">
+          <p>Privat Mail</p>
+          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            nschou@hotmail.com
+          </p>
+        </div>
+      </a>
+    )
+  }
 
-<!-- ✅ WORK MAIL BUTTON -->
-{
-  variant === "workMail" && (
-    <a
-      href="mailto:nisc0003@stud.ek.dk"
-      class:list={[buttonStyling, sizeClasses[size]]}
-    >
-      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:-translate-x-6 group-hover:opacity-0">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_yellow);"
+  {
+    variant === "workMail" && (
+      <a
+        href="mailto:nisc0003@stud.ek.dk"
+        class:list={[buttonStyling, sizeClasses[size]]}
+      >
+        <div
+          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+          class:list={[iconColors[variant]]}
         >
-          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
-        </span>
-        Work Mail
-      </span>
-      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-x-6 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_yellow);"
-        >
-          <img src={Mail.src} alt="Mail" class="w-4 h-4 text-white" />
-        </span>
-        nisc0003@stud.ek.dk
-      </span>
-    </a>
-  )
-}
+          <img src={Mail.src} alt="Mail" class="w-6 h-6" />
+        </div>
+        <div class="flex flex-col items-start flex-1">
+          <p>Studie Mail</p>
+          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            nisc0003@stud.ek.dk
+          </p>
+        </div>
+      </a>
+    )
+  }
 
-<!-- ✅ CALL BUTTON -->
-{
-  variant === "call" && (
-    <button id="callBtn" class:list={[buttonStyling, sizeClasses[size]]}>
-      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:-translate-x-4 group-hover:opacity-0">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_green);"
+  {
+    variant === "call" && (
+      <button id="callBtn" class:list={[buttonStyling, sizeClasses[size]]}>
+        <div
+          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+          class:list={[iconColors[variant]]}
         >
-          <img src={Phone.src} alt="Phone" class="w-4 h-4 text-white" />
-        </span>
-        Call Me
-      </span>
-      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-x-4 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_green);"
-        >
-          <img src={Phone.src} alt="Phone" class="w-4 h-4 text-white" />
-        </span>
-        61661125
-      </span>
-    </button>
-  )
-}
+          <img src={Phone.src} alt="Phone" class="w-6 h-6" />
+        </div>
+        <div class="flex flex-col items-start flex-1">
+          <p>Telefonummer</p>
+          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            61661126
+          </p>
+        </div>
+      </button>
+    )
+  }
 
-<!-- ✅ DOWNLOAD CV BUTTON -->
-{
-  variant === "download" && (
-    <a href="/cv.pdf" download class:list={[buttonStyling, sizeClasses[size]]}>
-      <span class="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 group-hover:-translate-y-6 group-hover:opacity-0">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_blue);"
+  {
+    variant === "download" && (
+      <a
+        href="/cv.pdf"
+        download
+        class:list={[buttonStyling, sizeClasses[size]]}
+      >
+        <div
+          class="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0"
+          class:list={[iconColors[variant]]}
         >
-          <img src={Paperclip.src} alt="Download" class="w-4 h-4 text-white" />
-        </span>
-        Download CV
-      </span>
-      <span class="absolute inset-0 flex items-center justify-center gap-2 translate-y-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-        <span
-          class="w-8 h-8 rounded-full flex items-center justify-center"
-          style="background: var(--color-accent_blue);"
-        >
-          <img src={Paperclip.src} alt="Download" class="w-4 h-4 text-white" />
-        </span>
-        PDF ↓
-      </span>
-    </a>
-  )
-}
+          <img src={Paperclip.src} alt="Download" class="w-6 h-6" />
+        </div>
+        <div class="flex flex-col items-start flex-1">
+          <p>Download CV</p>
+          <p class="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            PDF ↓
+          </p>
+        </div>
+      </a>
+    )
+  }
+</div>
 
 <script>
-  // 📱 Copy phone number
   document.addEventListener("DOMContentLoaded", () => {
     const callBtn = document.querySelector("#callBtn");
     if (callBtn) {
       callBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText("61661125");
-        alert("Number copied: 61661125");
+        navigator.clipboard.writeText("61661126");
+        alert("Number copied: 61661126");
       });
     }
   });
