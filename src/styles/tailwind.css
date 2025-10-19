@@ -51,11 +51,9 @@
   --font-sans: "RadioCanadaBig", sans-serif;
 }
 
-@layer base {
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@layer components {
-}
-
-@layer utilities {
-}
+/* Add any project utility imports here (keep plugin config in tailwind.config.js) */
+/* Example: import a small animation helper if needed, but do it via npm and tailwind config */
