@@ -1,170 +1,122 @@
 ---
 import Heading from "../components/Heading.astro";
-import Text from "../components/Text.astro";
 import { Image } from "astro:assets";
-import Blue from "../assets/Star_blue.svg";
-import Green from "../assets/Star_green.svg";
-import Yellow from "../assets/Star_yellow.svg";
-import Red from "../assets/Star_red.svg";
+import Blue from "../assets/star_blue.svg";
+import Green from "../assets/star_green.svg";
+import Yellow from "../assets/star_yellow.svg";
+import Red from "../assets/star_red.svg";
 
-const skills = [
+const SKILLS = [
   {
-    title: "UX/UI Design",
-    fullTitle: "UX/UI Design & Research",
-    color: "bg-accent_yellow",
-    starColor: Yellow,
-    stars: 4,
-    items: [
-      "HTML, CSS & JavaScript",
-      "Astro, Tailwind CSS & Alpine.js",
-      "Responsivt & mobil-first design",
-      "SEO-optimering & performance",
-    ],
-  },
-  {
+    id: "frontend",
     title: "Frontend Udvikling",
-    fullTitle: "Frontend Udvikling",
-    color: "bg-accent_blue",
-    starColor: Blue,
-    stars: 5,
-    items: [
-      "Brugerresearch & usability testing",
-      "Wireframing & prototyping (Figma)",
-      "Designsystemer & style guides",
-      "Design thinking processer",
-      "Visuel identitet & branding",
+    desc: [
+      "Moderne webteknologier",
+      "Performance optimering",
+      "Responsivt design",
     ],
+    stars: 5,
+    accent: "blue",
   },
   {
-    title: "Visuel Produktion",
-    fullTitle: "Video, Foto & Adobe Creative Suite",
-    color: "bg-accent_green",
-    starColor: Green,
+    id: "ux",
+    title: "UX / UI Design",
+    desc: [
+      "Brugercentreret design",
+      "Prototyping & wireframing",
+      "Designsystemer",
+    ],
+    stars: 4,
+    accent: "yellow",
+  },
+  {
+    id: "adobe",
+    title: "Adobe Creative Cloud",
+    desc: [
+      "Grafisk design & illustration",
+      "Foto- og videoredigering",
+      "Motion graphics",
+    ],
     stars: 3,
-    items: [
-      "Vektorillustration og grafisk design (Illustrator)",
-      "Billedredigering og retouchering (Photoshop)",
-      "Farvekorrigering og tonejustering (Lightroom)",
-      "Videoredigering og klipning (Premiere Pro)",
-      "Animation og motion graphics (After Effects)",
-    ],
+    accent: "green",
   },
   {
+    id: "audio",
     title: "Lydproduktion",
-    fullTitle: "Lydproduktion & Musikproduktion",
-    color: "bg-accent_red",
-    starColor: Red,
+    desc: ["Digital musikproduktion", "Lyddesign og mixing"],
     stars: 5,
-    items: [
-      "FL Studio & Ableton Live",
-      "Musikproduktion & komposition",
-      "Lyddesign til digitale medier",
-      "Lydeffekter til spil & animation",
-    ],
+    accent: "red",
   },
 ];
+
+const ACCENT_CLASS = {
+  blue: "bg-[var(--color-accent_blue)]",
+  yellow: "bg-[var(--color-accent_yellow)]",
+  green: "bg-[var(--color-accent_green)]",
+  red: "bg-[var(--color-accent_red)]",
+};
+
+function starSrc(accent) {
+  return accent === "blue"
+    ? Blue
+    : accent === "yellow"
+      ? Yellow
+      : accent === "green"
+        ? Green
+        : Red;
+}
 ---
 
 <div class="w-full max-w-5xl mx-auto px-4 lg:px-6 mb-8">
-  <div class="flex flex-col gap-4">
-    <Heading
-      htmlheading="h2"
-      type="section_heading"
-      stylingclasses="text-text-white mb-2 px-0"
-    >
-      Kompetencer
-    </Heading>
+  <Heading
+    htmlheading="h2"
+    type="section_heading"
+    stylingclasses="text-text-white mb-4 text-lg md:text-xl"
+  >
+    Kvalifikationer
+  </Heading>
 
+  <div class="flex flex-col gap-3">
     {
-      skills.map((skill, index) => (
+      SKILLS.map((skill, idx) => (
         <article
-          x-data="{ expanded: false }"
-          class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out rounded-lg overflow-hidden border border-white/8 hover:border-white/20 transition-all duration-300 group"
-          style={`animation-delay: ${index * 80}ms;`}
+          key={skill.id}
+          class="relative bg-transparent rounded-md p-3 md:p-4 border border-white/6 shadow-sm overflow-visible
+               opacity-0 translate-y-2 will-change-transform transition-all duration-500"
+          data-skill-card
+          aria-labelledby={`skill-${skill.id}-title`}
+          style={`animation-delay: ${idx * 60}ms;`}
         >
-          <button
-            type="button"
-            @click="expanded = !expanded"
-            class="w-full flex flex-col gap-3 text-left px-4 py-4 lg:px-6 lg:py-5 hover:bg-white/3 transition-colors duration-200"
-          >
-            <div class="flex items-start md:items-center justify-between gap-3 w-full">
-              <div class="min-w-0 flex items-center gap-3">
-                <div
-                  class={`w-2.5 h-2.5 lg:w-3 lg:h-3 ${skill.color} rounded-full flex-shrink-0`}
-                />
-                <span class="text-text-white text-base lg:text-lg font-display2 leading-tight truncate">
-                  {skill.title}
-                </span>
-              </div>
+          <div class="grid grid-cols-1 md:grid-cols-[1fr_88px] gap-3 items-start">
+            <div class="min-w-0 pr-2">
+              <h3
+                id={`skill-${skill.id}-title`}
+                class="text-text-white text-sm md:text-sm font-semibold leading-tight"
+              >
+                {skill.title}
+              </h3>
 
-              <div class="flex items-center gap-2 flex-shrink-0">
-                <div class="flex items-center gap-1" aria-hidden="true">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Image
-                      src={i < skill.stars ? skill.starColor : Blue}
-                      alt="star"
-                      width={16}
-                      height={16}
-                      class={`w-3.5 h-3.5 lg:w-4 lg:h-4 ${i < skill.stars ? "opacity-100" : "opacity-20"}`}
-                    />
-                  ))}
-                </div>
-                <span class="text-text-white/40 text-xs lg:text-sm font-sans flex-shrink-0">
-                  {skill.stars}/5
-                </span>
-              </div>
+              <ul class="text-text-white/90 text-sm mt-2 space-y-0.5 whitespace-normal break-words">
+                {skill.desc.map((d) => (
+                  <li class="leading-snug text-sm">• {d}</li>
+                ))}
+              </ul>
             </div>
-          </button>
 
-          <div
-            x-show="expanded"
-            x-transition:enter="transition-all ease-out duration-400"
-            x-transition:enter-start="opacity-0 max-h-0"
-            x-transition:enter-end="opacity-100 max-h-[500px]"
-            x-transition:leave="transition-all ease-in duration-300"
-            x-transition:leave-start="opacity-100 max-h-[500px]"
-            x-transition:leave-end="opacity-0 max-h-0"
-            class="overflow-hidden"
-          >
-            <div class="px-4 lg:px-6 pb-4 lg:pb-5 pt-2">
-              <div class="border-t border-white/8 pt-4">
-                <Heading
-                  htmlheading="h4"
-                  type="card_heading"
-                  font="display2"
-                  stylingclasses="text-text-white/90 mb-3 text-sm lg:text-base"
-                >
-                  {skill.fullTitle}
-                </Heading>
-
-                <ul class="space-y-2.5 lg:space-y-3 mb-4">
-                  {skill.items.map((item) => (
-                    <li class="flex items-start gap-2.5">
-                      <span
-                        class={`w-1.5 h-1.5 ${skill.color} rounded-full flex-shrink-0 mt-1.5`}
-                      />
-                      <Text
-                        teksttype="konsultativ"
-                        stylingclasses="text-text-white/80 text-sm lg:text-sm my-0 leading-relaxed flex-1"
-                      >
-                        {item}
-                      </Text>
-                    </li>
-                  ))}
-                </ul>
-
-                <div class="pt-3 border-t border-white/6">
-                  <Text
-                    teksttype="konsultativ"
-                    stylingclasses="text-text-white/50 text-sm my-0 leading-relaxed"
-                  >
-                    {skill.stars === 5
-                      ? "Meget erfaren gennem projekter og selvstændigt arbejde"
-                      : skill.stars === 4
-                        ? "Solid erfaring fra studiet og egne projekter"
-                        : "Grundlæggende kendskab og praktisk erfaring"}
-                  </Text>
-                </div>
+            <div class="flex items-start md:items-center justify-start md:justify-end">
+              <div
+                class="w-full md:w-[72px] flex items-center md:justify-end gap-1"
+                aria-hidden="true"
+              >
+                {Array.from({ length: skill.stars }).map((_, i) => (
+                  <Image
+                    src={starSrc(skill.accent)}
+                    alt="star"
+                    width={14}
+                    height={14}
+                    class="w-3.5 h-3.5"
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -173,3 +125,36 @@ const skills = [
     }
   </div>
 </div>
+
+<script is:inline>
+  (function () {
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.remove("opacity-0", "translate-y-2");
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12 },
+    );
+
+    document
+      .querySelectorAll("[data-skill-card]")
+      .forEach((el) => io.observe(el));
+    // cleanup when navigating away (SPA) or unload
+    const mo = new MutationObserver(() => {
+      if (
+        !document.body.contains(document.querySelector("[data-skill-card]"))
+      ) {
+        io.disconnect();
+        mo.disconnect();
+      }
+    });
+    mo.observe(document, { childList: true, subtree: true });
+    window.addEventListener("beforeunload", () => io.disconnect(), {
+      passive: true,
+    });
+  })();
+</script>
