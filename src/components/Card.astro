@@ -32,7 +32,7 @@ const accentClass =
 ---
 
 <article
-  class="relative max-w-4xl mx-auto bg-bg2/55 backdrop-blur-sm rounded-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start
+  class="relative max-w-5xl mx-auto bg-bg2/55 backdrop-blur-sm rounded-xl px-4 md:px-6 lg:px-10 py-4 md:py-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start
          border border-white/6 shadow-md transition-all duration-200 will-change-transform overflow-hidden cursor-default"
   aria-label={title}
 >
@@ -43,7 +43,7 @@ const accentClass =
   >
   </div>
 
-  <!-- Image panel -->
+  <!-- Image panel (unchanged loading behavior) -->
   <div
     class="relative w-full rounded-lg overflow-hidden h-56 md:h-64 flex-shrink-0 flex items-center justify-center"
   >
@@ -52,9 +52,9 @@ const accentClass =
         <img
           src={image.src}
           alt={image.alt}
-          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
-          data-image={index}
           loading="lazy"
+          data-image={index}
+          class={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
         />
       ))
     }
@@ -63,25 +63,26 @@ const accentClass =
       class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/30 via-transparent to-transparent"
     >
     </div>
-
-    <!-- decorative accent removed (no circle inside image) -->
   </div>
 
   <!-- Content panel -->
-  <div class="flex flex-col gap-3 md:gap-4 pl-2">
-    <div class="flex items-center gap-3">
-      <Heading
-        htmlheading="h3"
-        type="div_heading"
-        font="display1"
-        stylingclasses="text-text-white text-lg md:text-xl font-semibold leading-snug"
-      >
-        {title}
-      </Heading>
+  <div class="flex flex-col gap-3 md:gap-4">
+    <div class="flex items-center gap-3 w-full">
+      <div class="min-w-0 flex-1">
+        <Heading
+          htmlheading="h3"
+          type="div_heading"
+          font="display1"
+          stylingclasses="text-text-white text-lg md:text-xl font-semibold leading-snug truncate"
+        >
+          {title}
+        </Heading>
+      </div>
 
       <!-- subtle pill showing project type / accent color -->
       <span
-        class={`ml-auto inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium text-white/95 ${accentClass} bg-opacity-90 ring-1 ring-white/6`}
+        class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium text-white/95 ${accentClass} bg-opacity-90 ring-1 ring-white/6 flex-shrink-0`}
+        aria-hidden="true"
       >
         <span class="w-2 h-2 rounded-full bg-white/30" aria-hidden="true"
         ></span>

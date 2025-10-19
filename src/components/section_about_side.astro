@@ -1,7 +1,7 @@
 ---
-import Heading from "../components/Heading.astro";
+import Heading from "./Heading.astro";
 import Button from "./Button.astro";
-import Skills from "../components/Skills.astro";
+import Skills from "./Skills.astro";
 ---
 
 <div
@@ -9,7 +9,6 @@ import Skills from "../components/Skills.astro";
   x-data="sidebar()"
   x-init="init()"
 >
-  <!-- Top Heading - Always at top -->
   <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
     <Heading
       htmlheading="h2"
@@ -17,13 +16,10 @@ import Skills from "../components/Skills.astro";
       font="display2"
       stylingclasses="text-text-white lg:text-left mb-6"
     >
-      "Digital design med fokus på UX, UI prototyping"
+      Studerende med passion for at skabe intuitive interfaces
     </Heading>
   </div>
 
-  <!-- Flexible spacer removed; using lg:justify-between on container so contact sits at the bottom of the viewport -->
-
-  <!-- Contact Section - positioned at bottom of viewport on lg via container spacing -->
   <div
     class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-0 flex-shrink-0 lg:bg-bg1"
     data-reveal
@@ -36,7 +32,8 @@ import Skills from "../components/Skills.astro";
     >
       Kontakt mig
     </Heading>
-    <div class="justify-items-start grid gap-4">
+
+    <div class="grid gap-4">
       <Button variant="privateMail" />
       <Button variant="workMail" />
       <Button variant="call" />
@@ -44,7 +41,17 @@ import Skills from "../components/Skills.astro";
     </div>
   </div>
 
-  <!-- Skills Section - below everything, shares same lg background as contact (only on lg) -->
+  <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
+    <Heading
+      htmlheading="h2"
+      type="div_heading"
+      font="display2"
+      stylingclasses="text-text-white lg:text-left mb-6"
+    >
+      Digital Designer under konstruktion
+    </Heading>
+  </div>
+
   <div
     class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:my-8 flex-shrink-0 lg:bg-bg1"
     data-reveal
@@ -57,6 +64,7 @@ import Skills from "../components/Skills.astro";
     >
       Kompetencer
     </Heading>
+
     <Skills />
   </div>
 </div>
@@ -66,31 +74,26 @@ import Skills from "../components/Skills.astro";
   window.Alpine = Alpine;
   Alpine.start();
 
-  // sidebar() only manages the reveal-once behavior now; sticky logic removed
   window.sidebar = () => ({
     revealObserver: null,
     init() {
-      // For small screens, reveal everything immediately and don't observe
+      const root = this.$el;
+
       if (!window.matchMedia("(min-width: 1024px)").matches) {
-        this.$el
+        root
           .querySelectorAll("[data-reveal]")
           .forEach((el) => el.classList.add("revealed"));
         return;
       }
 
-      const root = this.$el;
-
-      // Reveal-once: elements marked with data-reveal will get 'revealed' once when they enter view
       const revealEls = Array.from(root.querySelectorAll("[data-reveal]"));
 
-      // If an element is already in the viewport, mark revealed immediately
       revealEls.forEach((el) => {
         const rect = el.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-        if (inView) el.classList.add("revealed");
+        if (rect.top < window.innerHeight && rect.bottom > 0)
+          el.classList.add("revealed");
       });
 
-      // Observe remaining non-revealed elements and reveal them once when they enter view
       this.revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -100,26 +103,21 @@ import Skills from "../components/Skills.astro";
             }
           });
         },
-        {
-          root: null,
-          threshold: 0.1,
-          rootMargin: "0px 0px -10% 0px",
-        },
+        { threshold: 0.1, rootMargin: "0px 0px -10% 0px" },
       );
 
       revealEls.forEach((el) => {
         if (!el.classList.contains("revealed")) this.revealObserver.observe(el);
       });
 
-      // cleanup on page unload / hot-reload
       const cleanup = () => {
         if (this.revealObserver) this.revealObserver.disconnect();
       };
+
       window.addEventListener("beforeunload", cleanup);
 
-      // Also handle Alpine removal in SPA/hmr by hooking into the element removal
       new MutationObserver(() => {
-        if (!document.body.contains(this.$el)) cleanup();
+        if (!document.body.contains(root)) cleanup();
       }).observe(document, { childList: true, subtree: true });
     },
   });
