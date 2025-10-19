@@ -2,10 +2,10 @@
 import Heading from "../components/Heading.astro";
 import Text from "../components/Text.astro";
 import { Image } from "astro:assets";
-import Blue from "../assets/star_blue.svg";
-import Green from "../assets/star_green.svg";
-import Yellow from "../assets/star_yellow.svg";
-import Red from "../assets/star_red.svg";
+import Blue from "../assets/Star_blue.svg";
+import Green from "../assets/Star_green.svg";
+import Yellow from "../assets/Star_yellow.svg";
+import Red from "../assets/Star_red.svg";
 
 const skills = [
   {
@@ -65,7 +65,7 @@ const skills = [
 ];
 ---
 
-<div class="w-full max-w-5xl mx-auto px-4  ">
+<div class="w-full max-w-5xl mx-auto px-4 lg:px-6 mb-8">
   <div class="flex flex-col gap-4">
     <Heading
       htmlheading="h2"
@@ -79,12 +79,12 @@ const skills = [
       skills.map((skill, index) => (
         <article
           x-data="{ expanded: false }"
-          class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out bg-bg1 rounded-lg overflow-hidden border border-white/8 hover:border-white/20 transition-all duration-300 group"
+          class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out rounded-lg overflow-hidden border border-white/8 hover:border-white/20 transition-all duration-300 group"
           style={`animation-delay: ${index * 80}ms;`}
         >
           <button
+            type="button"
             @click="expanded = !expanded"
-            :aria-expanded="expanded.toString()"
             class="w-full flex flex-col gap-3 text-left px-4 py-4 lg:px-6 lg:py-5 hover:bg-white/3 transition-colors duration-200"
           >
             <div class="flex items-start md:items-center justify-between gap-3 w-full">
@@ -98,7 +98,7 @@ const skills = [
               </div>
 
               <div class="flex items-center gap-2 flex-shrink-0">
-                <div class="flex items-center gap-1">
+                <div class="flex items-center gap-1" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Image
                       src={i < skill.stars ? skill.starColor : Blue}
@@ -112,23 +112,6 @@ const skills = [
                 <span class="text-text-white/40 text-xs lg:text-sm font-sans flex-shrink-0">
                   {skill.stars}/5
                 </span>
-
-                <!-- Dropdown chevron -->
-                <svg
-                  aria-hidden="true"
-                  class="ml-2 w-3.5 h-3.5 lg:w-4 lg:h-4 text-text-white/60 transform transition-transform duration-200"
-                  :class="{ 'rotate-180': expanded }"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-
-                <span class="sr-only">Vis detaljer</span>
               </div>
             </div>
           </button>
