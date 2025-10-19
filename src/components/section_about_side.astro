@@ -6,7 +6,7 @@ import Skills from "./Skills.astro";
 
 <div
   class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col lg:justify-between lg:min-h-screen"
-  x-data="sidebar()"
+  x-data="sidebar"
   x-init="init()"
 >
   <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
@@ -21,13 +21,12 @@ import Skills from "./Skills.astro";
   </div>
 
   <div
-    class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-0 flex-shrink-0 lg:bg-bg1"
+    class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-0 flex-shrink-0 lg:bg-bg1 mb-20"
     data-reveal
   >
     <Heading
-      htmlheading="h3"
-      type="list_heading"
-      font="display2"
+      htmlheading="h2"
+      type="section_heading"
       stylingclasses="text-text-white mb-4 lg:mb-6"
     >
       Kontakt mig
@@ -53,18 +52,9 @@ import Skills from "./Skills.astro";
   </div>
 
   <div
-    class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:my-8 flex-shrink-0 lg:bg-bg1"
+    class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:my-8 flex-shrink-0 lg:bg-bg1 mb-20 lg:mb-6"
     data-reveal
   >
-    <Heading
-      htmlheading="h3"
-      type="list_heading"
-      font="display2"
-      stylingclasses="text-text-white mb-4 lg:mb-6"
-    >
-      Kompetencer
-    </Heading>
-
     <Skills />
   </div>
 </div>
@@ -72,12 +62,15 @@ import Skills from "./Skills.astro";
 <script type="module" is:inline>
   import Alpine from "https://unpkg.com/alpinejs@3.12.0/dist/module.esm.js";
   window.Alpine = Alpine;
-  Alpine.start();
 
-  window.sidebar = () => ({
+  Alpine.data("sidebar", () => ({
     revealObserver: null,
+    mutationObserver: null,
+    _cleanupFn: null,
+
     init() {
       const root = this.$el;
+      this._cleanupFn = () => this._cleanup();
 
       if (!window.matchMedia("(min-width: 1024px)").matches) {
         root
@@ -99,7 +92,8 @@ import Skills from "./Skills.astro";
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("revealed");
-              this.revealObserver.unobserve(entry.target);
+              if (this.revealObserver)
+                this.revealObserver.unobserve(entry.target);
             }
           });
         },
@@ -110,15 +104,37 @@ import Skills from "./Skills.astro";
         if (!el.classList.contains("revealed")) this.revealObserver.observe(el);
       });
 
-      const cleanup = () => {
-        if (this.revealObserver) this.revealObserver.disconnect();
-      };
+      window.addEventListener("beforeunload", this._cleanupFn);
 
-      window.addEventListener("beforeunload", cleanup);
-
-      new MutationObserver(() => {
-        if (!document.body.contains(root)) cleanup();
-      }).observe(document, { childList: true, subtree: true });
+      this.mutationObserver = new MutationObserver(() => {
+        if (!document.body.contains(root)) this._cleanup();
+      });
+      this.mutationObserver.observe(document, {
+        childList: true,
+        subtree: true,
+      });
     },
-  });
+
+    _cleanup() {
+      if (this.revealObserver) {
+        this.revealObserver.disconnect();
+        this.revealObserver = null;
+      }
+      if (this.mutationObserver) {
+        this.mutationObserver.disconnect();
+        this.mutationObserver = null;
+      }
+      if (this._cleanupFn) {
+        window.removeEventListener("beforeunload", this._cleanupFn);
+        this._cleanupFn = null;
+      }
+    },
+
+    // Alpine will call this when the component is removed
+    destroy() {
+      this._cleanup();
+    },
+  }));
+
+  Alpine.start();
 </script>
