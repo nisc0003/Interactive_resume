@@ -6,32 +6,53 @@ import Phone from "../assets/Phone.svg";
 const { variant = "primary" } = Astro.props;
 
 const iconColors = {
-  privateMail: "bg-[var(--color-accent_red)]",
-  workMail: "bg-[var(--color-accent_yellow)]",
-  call: "bg-[var(--color-accent_green)]",
-  download: "bg-[var(--color-accent_blue)]",
+  privateMail: "bg-accent_red",
+  workMail: "bg-accent_yellow",
+  call: "bg-accent_green",
+  download: "bg-accent_blue",
+};
+
+const labels = {
+  privateMail: "Privat Mail",
+  workMail: "Studie Mail",
+  call: "Telefon",
+  download: "Download CV",
+};
+
+const hoverTexts = {
+  privateMail: "nschou@hotmail.com",
+  workMail: "nisc0003@stud.ek.dk",
+  call: "61 66 11 26",
+  download: "PDF ↓",
 };
 ---
 
-<div class="w-full">
+<div
+  class="w-full intersect intersect:animate-fade-up animate-duration-500"
+  style={`animation-delay: ${variant === "privateMail" ? "0ms" : variant === "workMail" ? "100ms" : variant === "call" ? "200ms" : "300ms"}`}
+>
   {
     variant === "privateMail" && (
       <a
         href="mailto:nschou@hotmail.com"
-        class="group flex items-center py-2 px-2 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
+        class="group relative w-full h-14 flex items-center justify-center rounded-xl transition-all duration-300 border border-white/20 text-white bg-bg2 hover:bg-white hover:text-bg1 hover:border-white overflow-hidden"
+        aria-label="Privat mail"
+        title="nschou@hotmail.com"
       >
         <div
-          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
+          class={`absolute left-3 z-10 w-9 h-9 rounded-full flex items-center justify-center ${iconColors[variant]} transition-transform duration-300 group-hover:scale-110`}
         >
-          <img src={Mail.src} alt="Mail" class="w-5 h-5" />
+          <img src={Mail.src} alt="Mail" class="w-4 h-4" />
         </div>
-        <div class="flex flex-col justify-center relative w-full text-center">
-          <p class="text-md uppercase font-[var(--font-display1)] group-hover:opacity-0 transition-opacity duration-300">
-            Privat Mail
-          </p>
-          <p class="text-md uppercase font-[var(--font-display1)] absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            nschou@hotmail.com
-          </p>
+
+        <div class="relative flex items-center justify-center w-full px-14">
+          <span class="absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-y-2 text-xs lg:text-sm uppercase font-display1 tracking-wide whitespace-nowrap">
+            {labels[variant]}
+          </span>
+
+          <span class="transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 text-xs font-display1 whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+            {hoverTexts[variant]}
+          </span>
         </div>
       </a>
     )
@@ -41,20 +62,24 @@ const iconColors = {
     variant === "workMail" && (
       <a
         href="mailto:nisc0003@stud.ek.dk"
-        class="group flex items-center py-2 px-2 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
+        class="group relative w-full h-14 flex items-center justify-center rounded-xl transition-all duration-300 border border-white/20 text-white bg-bg2 hover:bg-white hover:text-bg1 hover:border-white overflow-hidden"
+        aria-label="Studie mail"
+        title="nisc0003@stud.ek.dk"
       >
         <div
-          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
+          class={`absolute left-3 z-10 w-9 h-9 rounded-full flex items-center justify-center ${iconColors[variant]} transition-transform duration-300 group-hover:scale-110`}
         >
-          <img src={Mail.src} alt="Mail" class="w-5 h-5" />
+          <img src={Mail.src} alt="Mail" class="w-4 h-4" />
         </div>
-        <div class="flex flex-col justify-center relative w-full text-center">
-          <p class="text-md uppercase font-[var(--font-display1)] group-hover:opacity-0 transition-opacity duration-300">
-            Studie Mail
-          </p>
-          <p class="text-md uppercase font-[var(--font-display1)] absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            nisc0003@stud.ek.dk
-          </p>
+
+        <div class="relative flex items-center justify-center w-full px-14">
+          <span class="absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-y-2 text-xs lg:text-sm uppercase font-display1 tracking-wide whitespace-nowrap">
+            {labels[variant]}
+          </span>
+
+          <span class="transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 text-xs font-display1 whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+            {hoverTexts[variant]}
+          </span>
         </div>
       </a>
     )
@@ -64,20 +89,24 @@ const iconColors = {
     variant === "call" && (
       <button
         id="callBtn"
-        class="group flex items-center py-2 px-2 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
+        class="group relative w-full h-14 flex items-center justify-center rounded-xl transition-all duration-300 border border-white/20 text-white bg-bg2 hover:bg-white hover:text-bg1 hover:border-white overflow-hidden"
+        aria-label="Kopiér telefonnummer"
+        title="Klik for at kopiere: 61661126"
       >
         <div
-          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
+          class={`absolute left-3 z-10 w-9 h-9 rounded-full flex items-center justify-center ${iconColors[variant]} transition-transform duration-300 group-hover:scale-110`}
         >
-          <img src={Phone.src} alt="Phone" class="w-5 h-5" />
+          <img src={Phone.src} alt="Phone" class="w-4 h-4" />
         </div>
-        <div class="flex flex-col justify-center relative w-full text-center">
-          <p class="text-md uppercase font-[var(--font-display1)] group-hover:opacity-0 transition-opacity duration-300">
-            Telefonnummer
-          </p>
-          <p class="text-md uppercase font-[var(--font-display1)] absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            61661126
-          </p>
+
+        <div class="relative flex items-center justify-center w-full px-14">
+          <span class="absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-y-2 text-xs lg:text-sm uppercase font-display1 tracking-wide whitespace-nowrap">
+            {labels[variant]}
+          </span>
+
+          <span class="transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 text-sm font-display1 whitespace-nowrap">
+            {hoverTexts[variant]}
+          </span>
         </div>
       </button>
     )
@@ -88,20 +117,24 @@ const iconColors = {
       <a
         href="/cv.pdf"
         download
-        class="group flex items-center py-2 px-2 rounded-full font-medium transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-black w-full"
+        class="group relative w-full h-14 flex items-center justify-center rounded-xl transition-all duration-300 border border-white/20 text-white bg-bg2 hover:bg-white hover:text-bg1 hover:border-white overflow-hidden"
+        aria-label="Download CV"
+        title="Download CV som PDF"
       >
         <div
-          class={`w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 ${iconColors[variant]}`}
+          class={`absolute left-3 z-10 w-9 h-9 rounded-full flex items-center justify-center ${iconColors[variant]} transition-transform duration-300 group-hover:scale-110`}
         >
-          <img src={Paperclip.src} alt="Download" class="w-5 h-5" />
+          <img src={Paperclip.src} alt="Download" class="w-4 h-4" />
         </div>
-        <div class="flex flex-col justify-center relative w-full text-center">
-          <p class="text-md uppercase font-[var(--font-display1)] group-hover:opacity-0 transition-opacity duration-300">
-            Download CV
-          </p>
-          <p class="text-md uppercase font-[var(--font-display1)] absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            PDF ↓
-          </p>
+
+        <div class="relative flex items-center justify-center w-full px-14">
+          <span class="absolute transition-all duration-300 opacity-100 group-hover:opacity-0 group-hover:translate-y-2 text-xs lg:text-sm uppercase font-display1 tracking-wide whitespace-nowrap">
+            {labels[variant]}
+          </span>
+
+          <span class="transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 text-base font-display1 whitespace-nowrap">
+            {hoverTexts[variant]}
+          </span>
         </div>
       </a>
     )
@@ -114,7 +147,15 @@ const iconColors = {
     if (callBtn) {
       callBtn.addEventListener("click", () => {
         navigator.clipboard.writeText("61661126");
-        alert("Nummer kopieret: 61661126");
+
+        const hoverText = callBtn.querySelector("span:last-child");
+        if (hoverText) {
+          const originalContent = hoverText.textContent;
+          hoverText.textContent = "✓ Kopieret!";
+          setTimeout(() => {
+            hoverText.textContent = originalContent;
+          }, 2000);
+        }
       });
     }
   });

@@ -7,58 +7,127 @@ const {
   title2 = "Projekt Titel2",
   description = "Projekt beskrivelse",
   images = [],
+  accent = null, // optional: 'red'|'yellow'|'green'|'blue'|'purple'|'orange'
 } = Astro.props;
+
+/* pick accent class: use provided accent or derive from title for variety */
+const ACCENTS = {
+  red: "bg-[var(--color-accent_red)]",
+  yellow: "bg-[var(--color-accent_yellow)]",
+  green: "bg-[var(--color-accent_green)]",
+  blue: "bg-[var(--color-accent_blue)]",
+  purple: "bg-[var(--color-accent_purple)]",
+  orange: "bg-[var(--color-accent_orange)]",
+};
+
+function pickAccentFromTitle(t) {
+  const keys = Object.keys(ACCENTS);
+  let sum = 0;
+  for (let i = 0; i < t.length; i++) sum += t.charCodeAt(i);
+  return ACCENTS[keys[sum % keys.length]];
+}
+
+const accentClass =
+  accent && ACCENTS[accent] ? ACCENTS[accent] : pickAccentFromTitle(title);
 ---
 
 <article
-  class="flex px-10 py-6 bg-bg2 rounded-lg gap-8 m-10 items-center max-w-4xl mx-auto"
+  class="relative max-w-4xl mx-auto bg-bg2/55 backdrop-blur-sm rounded-xl p-4 md:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start
+         border border-white/6 shadow-md transition-all duration-200 will-change-transform overflow-hidden cursor-default"
+  aria-label={title}
 >
-  <div class="flex-1 relative h-64 rounded-lg overflow-hidden">
+  <!-- left accent stripe -->
+  <div
+    class={`absolute left-0 top-0 bottom-0 w-1 ${accentClass} opacity-90`}
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Image panel -->
+  <div
+    class="relative w-full rounded-lg overflow-hidden h-56 md:h-64 flex-shrink-0 flex items-center justify-center"
+  >
     {
       images.map((image, index) => (
         <img
           src={image.src}
           alt={image.alt}
-          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            index === 0 ? "opacity-100" : "opacity-0"
-          }`}
+          class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
           data-image={index}
+          loading="lazy"
         />
       ))
     }
+
+    <div
+      class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/30 via-transparent to-transparent"
+    >
+    </div>
+
+    <!-- decorative accent removed (no circle inside image) -->
   </div>
 
-  <div class="flex-1 flex flex-col gap-4">
+  <!-- Content panel -->
+  <div class="flex flex-col gap-3 md:gap-4 pl-2">
+    <div class="flex items-center gap-3">
+      <Heading
+        htmlheading="h3"
+        type="div_heading"
+        font="display1"
+        stylingclasses="text-text-white text-lg md:text-xl font-semibold leading-snug"
+      >
+        {title}
+      </Heading>
+
+      <!-- subtle pill showing project type / accent color -->
+      <span
+        class={`ml-auto inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium text-white/95 ${accentClass} bg-opacity-90 ring-1 ring-white/6`}
+      >
+        <span class="w-2 h-2 rounded-full bg-white/30" aria-hidden="true"
+        ></span>
+        Projekt
+      </span>
+    </div>
+
     <Heading
-      htmlheading="h3"
-      type="div_heading"
-      font="display1"
-      stylingclasses="text-text-white border-b-2 border-text-white pb-2"
+      htmlheading="h4"
+      type="card_heading"
+      stylingclasses="text-text-white/90 text-sm md:text-base"
     >
-      {title}
-    </Heading>
-    <Heading htmlheading="h4" type="card_heading" stylingclasses="">
       {title2}
     </Heading>
-    <Text stylingclasses="text-text-white text-lg leading-relaxed">
+
+    <Text
+      stylingclasses="text-text-white/95 text-sm md:text-base leading-relaxed"
+    >
       {description}
     </Text>
-    <slot />
+
+    <div class="mt-auto flex gap-3 items-center">
+      <slot />
+    </div>
   </div>
 </article>
 
 <script is:inline>
   (function () {
     const card = document.currentScript.previousElementSibling;
-    const images = card.querySelectorAll("[data-image]");
+    if (!card) return;
+
+    const images = Array.from(card.querySelectorAll("[data-image]"));
+    if (images.length <= 1) return;
+
     let currentIndex = 0;
 
-    if (images.length > 1) {
-      setInterval(() => {
-        images[currentIndex].style.opacity = "0";
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].style.opacity = "1";
-      }, 5000);
-    }
+    images.forEach((img, i) => {
+      img.style.transition = "opacity 700ms ease-in-out";
+      img.style.opacity = i === 0 ? "1" : "0";
+    });
+
+    setInterval(() => {
+      images[currentIndex].style.opacity = "0";
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].style.opacity = "1";
+    }, 4500);
   })();
 </script>

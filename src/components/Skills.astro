@@ -1,164 +1,188 @@
 ---
 import Heading from "../components/Heading.astro";
+import Text from "../components/Text.astro";
 import { Image } from "astro:assets";
 import Blue from "../assets/Star_blue.svg";
 import Green from "../assets/Star_green.svg";
 import Yellow from "../assets/Star_yellow.svg";
 import Red from "../assets/Star_red.svg";
+
+const skills = [
+  {
+    title: "UX/UI Design",
+    fullTitle: "UX/UI Design & Research",
+    color: "bg-accent_yellow",
+    starColor: Yellow,
+    stars: 4,
+    items: [
+      "HTML, CSS & JavaScript",
+      "Astro, Tailwind CSS & Alpine.js",
+      "Responsivt & mobil-first design",
+      "SEO-optimering & performance"
+    ]
+  },
+  {
+    title: "Frontend Udvikling",
+    fullTitle: "Frontend Udvikling",
+    color: "bg-accent_blue",
+    starColor: Blue,
+    stars: 5,
+    items: [
+      "Brugerresearch & usability testing",
+      "Wireframing & prototyping (Figma)",
+      "Designsystemer & style guides",
+      "Design thinking processer",
+      "Visuel identitet & branding"
+    ]
+  },
+  {
+    title: "Visuel Produktion",
+    fullTitle: "Video, Foto & Adobe Creative Suite",
+    color: "bg-accent_green",
+    starColor: Green,
+    stars: 3,
+    items: [
+      "Vektorillustration og grafisk design (Illustrator)",
+      "Billedredigering og retouchering (Photoshop)",
+      "Farvekorrigering og tonejustering (Lightroom)",
+      "Videoredigering og klipning (Premiere Pro)",
+      "Animation og motion graphics (After Effects)"
+    ]
+  },
+  {
+    title: "Lydproduktion",
+    fullTitle: "Lydproduktion & Musikproduktion",
+    color: "bg-accent_red",
+    starColor: Red,
+    stars: 5,
+    items: [
+      "FL Studio & Ableton Live",
+      "Musikproduktion & komposition",
+      "Lyddesign til digitale medier",
+      "Lydeffekter til spil & animation"
+    ]
+  }
+];
 ---
 
-<div class="grid gap-4 lg:gap-6 p-4 lg:p-8 mt-[5vw] mb-10 lg:mb-0">
-  <Heading
-    htmlheading="h2"
-    type="section_heading"
-    stylingclasses="text-text-white mb-4 px-4 lg:px-6"
+<div class="w-full mb-8">
+  <div 
+    class="intersect intersect:animate-fade-up animate-duration-700 animate-ease-out mb-5 lg:mb-6"
   >
-    Kvalifikationer
-  </Heading>
-  <!-- Web Development -->
-  <article class="bg-bg1 rounded-lg px-4 lg:px-6">
-    <div
-      class="flex justify-between items-start lg:items-center mb-3 lg:mb-4 pb-3 lg:pb-4 border-b border-text-white"
+    <Heading
+      htmlheading="h3"
+      type="list_heading"
+      font="display2"
+      stylingclasses="text-text-white"
     >
-      <div class="flex items-center gap-3">
-        <div class="w-2 h-2 lg:w-3 lg:h-3 bg-accent_blue rounded-full"></div>
-        <Heading
-          htmlheading="h2"
-          type="list_heading"
-          font="display2"
-          stylingclasses="text-text-white"
+      Kompetencer
+    </Heading>
+  </div>
+  
+  <div class="flex flex-col gap-4">
+    {skills.map((skill, index) => (
+      <article 
+        x-data="{ expanded: false }"
+        class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out bg-bg2 rounded-xl overflow-hidden border border-white/10 hover:border-white/25 hover:bg-white/[0.02] transition-all duration-300 group"
+        style={`animation-delay: ${index * 80}ms;`}
+      >
+        {/* Collapsible Header */}
+        <button
+          @click="expanded = !expanded"
+          class="w-full px-4 lg:px-5 py-4 lg:py-5 flex flex-col gap-3 text-left hover:bg-white/5 transition-colors duration-200"
         >
-          Frontend Udvikling
-        </Heading>
-      </div>
-      <div class="flex gap-1">
-        {
-          Array.from({ length: 5 }).map((_, i) => (
-            <Image
-              src={Blue}
-              alt="star"
-              width="16"
-              height="16"
-              class="w-4 h-4 lg:w-5 lg:h-5"
-            />
-          ))
-        }
-      </div>
-    </div>
-    <ul class="text-text-white text-sm lg:text-base space-y-1 lg:space-y-2">
-      <li>Moderne webteknologier</li>
-      <li>Performance optimering</li>
-      <li>Responsivt design</li>
-    </ul>
-  </article>
+          {/* Title Row */}
+          <div class="flex items-center justify-between gap-4 w-full">
+            <div class="flex items-center gap-2.5 min-w-0 flex-1">
+              <div 
+                class={`intersect intersect:animate-jump-in animate-duration-500 w-2.5 h-2.5 lg:w-3 lg:h-3 ${skill.color} rounded-full flex-shrink-0 animate-delay-200`}
+              />
+              <span class="text-text-white text-sm lg:text-base font-display2 break-words leading-snug">
+                {skill.title}
+              </span>
+            </div>
+            
+            {/* Chevron */}
+            <svg 
+              class="w-4 h-4 lg:w-5 lg:h-5 text-text-white/60 group-hover:text-text-white/80 transition-all duration-300 flex-shrink-0 ml-2"
+              :class="expanded ? 'rotate-180' : ''"
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
 
-  <!-- Design -->
-  <article class="bg-bg1 rounded-lg px-4 lg:px-6">
-    <div
-      class="flex justify-between items-start lg:items-center mb-3 lg:mb-4 pb-3 lg:pb-4 border-b border-text-white"
-    >
-      <div class="flex items-center gap-3">
-        <div class="w-2 h-2 lg:w-3 lg:h-3 bg-accent_yellow rounded-full"></div>
-        <Heading
-          htmlheading="h2"
-          type="list_heading"
-          font="display2"
-          stylingclasses="text-text-white"
-        >
-          UX/UI Design
-        </Heading>
-      </div>
-      <div class="flex gap-1">
-        {
-          Array.from({ length: 4 }).map((_, i) => (
-            <Image
-              src={Yellow}
-              alt="star"
-              width="16"
-              height="16"
-              class="w-4 h-4 lg:w-5 lg:h-5"
-            />
-          ))
-        }
-      </div>
-    </div>
-    <ul class="text-text-white text-sm lg:text-base space-y-1 lg:space-y-2">
-      <li>Brugercentreret design</li>
-      <li>Prototyping & wireframing</li>
-      <li>Designsystemer</li>
-    </ul>
-  </article>
+          {/* Stars Row - Separate with proper spacing */}
+          <div class="flex items-center justify-between gap-3 w-full pl-5">
+            <div class="flex gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div 
+                  class="intersect intersect:animate-flip-up animate-duration-400"
+                  style={`animation-delay: ${250 + (i * 50)}ms;`}
+                >
+                  <Image
+                    src={i < skill.stars ? skill.starColor : Blue}
+                    alt="star"
+                    width="16"
+                    height="16"
+                    class={`w-3.5 h-3.5 lg:w-4 lg:h-4 ${i < skill.stars ? 'opacity-100' : 'opacity-20'}`}
+                  />
+                </div>
+              ))}
+            </div>
+            <span class="text-text-white/40 text-xs lg:text-sm font-sans flex-shrink-0">
+              {skill.stars}/5
+            </span>
+          </div>
+        </button>
 
-  <!-- Adobe -->
-  <article class="bg-bg1 rounded-lg px-4 lg:px-6">
-    <div
-      class="flex justify-between items-start lg:items-center mb-3 lg:mb-4 pb-3 lg:pb-4 border-b border-text-white"
-    >
-      <div class="flex items-center gap-3">
-        <div class="w-2 h-2 lg:w-3 lg:h-3 bg-accent_green rounded-full"></div>
-        <Heading
-          htmlheading="h2"
-          type="list_heading"
-          font="display2"
-          stylingclasses="text-text-white"
+        {/* Expandable Content */}
+        <div
+          x-show="expanded"
+          x-transition:enter="transition-all ease-out duration-400"
+          x-transition:enter-start="opacity-0 max-h-0"
+          x-transition:enter-end="opacity-100 max-h-[500px]"
+          x-transition:leave="transition-all ease-in duration-300"
+          x-transition:leave-start="opacity-100 max-h-[500px]"
+          x-transition:leave-end="opacity-0 max-h-0"
+          class="overflow-hidden"
         >
-          Adobe Creative Cloud
-        </Heading>
-      </div>
-      <div class="flex gap-1">
-        {
-          Array.from({ length: 3 }).map((_, i) => (
-            <Image
-              src={Green}
-              alt="star"
-              width="16"
-              height="16"
-              class="w-4 h-4 lg:w-5 lg:h-5"
-            />
-          ))
-        }
-      </div>
-    </div>
-    <ul class="text-text-white text-sm lg:text-base space-y-1 lg:space-y-2">
-      <li>Grafisk design & illustration</li>
-      <li>Foto- og videoredigering</li>
-      <li>Motion graphics</li>
-    </ul>
-  </article>
-
-  <!-- Music -->
-  <article class="bg-bg1 rounded-lg px-4 lg:px-6">
-    <div
-      class="flex justify-between items-start lg:items-center mb-3 lg:mb-4 pb-3 lg:pb-4 border-b border-text-white"
-    >
-      <div class="flex items-center gap-3">
-        <div class="w-2 h-2 lg:w-3 lg:h-3 bg-accent_red rounded-full"></div>
-        <Heading
-          htmlheading="h2"
-          type="list_heading"
-          font="display2"
-          stylingclasses="text-text-white"
-        >
-          Lydproduktion
-        </Heading>
-      </div>
-      <div class="flex gap-1">
-        {
-          Array.from({ length: 5 }).map((_, i) => (
-            <Image
-              src={Red}
-              alt="star"
-              width="16"
-              height="16"
-              class="w-4 h-4 lg:w-5 lg:h-5"
-            />
-          ))
-        }
-      </div>
-    </div>
-    <ul class="text-text-white text-sm lg:text-base space-y-1 lg:space-y-2">
-      <li>Digital musikproduktion</li>
-      <li>Lyddesign og mixing</li>
-    </ul>
-  </article>
+          <div class="px-4 lg:px-5 pb-4 lg:pb-5 pt-1">
+            <div class="border-t border-white/10 pt-4">
+              {/* Full title using Heading component */}
+              <Heading
+                htmlheading="h4"
+                type="card_heading"
+                font="display2"
+                stylingclasses="text-text-white/90 mb-3 lg:mb-4 text-sm lg:text-base"
+              >
+                {skill.fullTitle}
+              </Heading>
+              
+              <ul class="space-y-2.5 lg:space-y-3 mb-4">
+                {skill.items.map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class={`w-1.5 h-1.5 ${skill.color} rounded-full flex-shrink-0 mt-1.5`} />
+                    <Text teksttype="konsultativ" stylingclasses="text-text-white/80 text-xs lg:text-sm my-0 leading-relaxed flex-1 break-words">
+                      {item}
+                    </Text>
+                  </li>
+                ))}
+              </ul>
+              
+              <div class="pt-3 border-t border-white/5">
+                <Text teksttype="konsultativ" stylingclasses="text-text-white/50 text-xs lg:text-sm my-0 leading-relaxed">
+                  {skill.stars === 5 ? 'Meget erfaren gennem projekter og selvstændigt arbejde' : 
+                   skill.stars === 4 ? 'Solid erfaring fra studiet og egne projekter' :
+                   'Grundlæggende kendskab og praktisk erfaring'}
+                </Text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
 </div>

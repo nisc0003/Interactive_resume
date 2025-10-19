@@ -1,36 +1,47 @@
 ---
 import Heading from "../components/Heading.astro";
 import Button from "./Button.astro";
+import Skills from "../components/Skills.astro";
 ---
 
 <div
-  class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col justify-between"
+  class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col justify-between min-h-screen lg:min-h-0"
 >
-  <Heading
-    htmlheading="h2"
-    type="div_heading"
-    font="display2"
-    stylingclasses="text-text-white lg:text-left mb-6 p-6 lg:p-8"
-  >
-    "Digital design med fokus på UX, UI prototyping"
-  </Heading>
-
-  <!-- Hidden contact section that appears on hover -->
-  <div class="lg:bg-bg1 rounded-lg p-4 lg:p-12 overflow-hidden lg:m-8">
+  <!-- Top Quote Section -->
+  <div class="p-6 lg:p-8">
     <Heading
-      htmlheading="h3"
-      type="list_heading"
+      htmlheading="h2"
+      type="div_heading"
       font="display2"
-      stylingclasses="text-text-white mb-4 lg:mb-6"
+      stylingclasses="text-text-white lg:text-left leading-relaxed"
     >
-      Kontakt mig
+      "Digital design med fokus på UX, UI & prototyping"
     </Heading>
+  </div>
 
-    <div class="justify-items-start grid gap-4">
+  <!-- Contact & Skills Section -->
+  <div class="lg:bg-bg1 rounded-lg p-6 lg:p-8 lg:m-6 lg:mb-8 space-y-6">
+    <!-- Contact Heading -->
+    <div class="intersect intersect:animate-fade-up animate-duration-700">
+      <Heading
+        htmlheading="h3"
+        type="list_heading"
+        font="display2"
+        stylingclasses="text-text-white mb-5"
+      >
+        Kontakt mig
+      </Heading>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-col gap-3">
       <Button variant="privateMail" />
       <Button variant="workMail" />
       <Button variant="call" />
       <Button variant="download" />
     </div>
+
+    <!-- Skills Component -->
+    <Skills />
   </div>
 </div>
