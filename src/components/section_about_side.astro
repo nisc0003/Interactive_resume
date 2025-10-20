@@ -8,7 +8,7 @@ import LinkedIn from "../assets/Linkedin.svg";
 ---
 
 <div
-  class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col lg:min-h-screen"
+  class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col lg:min-h-screen md:px-0 px-4"
   x-data="sidebar"
   x-init="init()"
 >
@@ -105,7 +105,7 @@ import LinkedIn from "../assets/Linkedin.svg";
 
   <!-- Below the fold content as its own viewport -->
   <div class="flex flex-col lg:justify-between lg:min-h-screen">
-    <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
+    <div class="p-6 lg:p-8 flex-shrink-0 p-4 md:p-5 lg:p-12" data-reveal>
       <Heading
         htmlheading="h1"
         type="hero2"

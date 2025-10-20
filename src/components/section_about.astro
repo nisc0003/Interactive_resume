@@ -8,7 +8,7 @@ import Paperclip from "../assets/Paperclip.svg";
 import SectionProjects from "../components/Section_projects.astro";
 ---
 
-<div class="lg:col-span-7 lg:col-start-5 lg:row-start-1 lg:p-8">
+<div class="lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:p-8">
   <div
     class="min-h-screen flex items-center justify-center py-8 md:py-12 px-6 lg:px-0"
   >
@@ -24,28 +24,36 @@ import SectionProjects from "../components/Section_projects.astro";
           Hvem er Jeg som Designer
         </Heading>
       </div>
+
+      <!-- Responsive, consistent-crop image carousel -->
       <div
-        class="w-full xl:w-2/5 flex-shrink-0 h-92 xl:h-auto intersect intersect:animate-fade-right animate-duration-600 relative overflow-hidden rounded-md lg:rounded-lg"
-        style="animation-delay: 80ms"
         id="image-carousel"
+        class="w-full xl:w-2/5 flex-shrink-0 max-h-120 relative overflow-hidden rounded-md lg:rounded-lg bg-bg1/60 ring-1 ring-white/10
+               aspect-[1/1] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-[16/10] xl:aspect-[16/9]"
       >
         <img
           src={me.src}
           alt="Nicolai Schou"
-          class="carousel-image w-full h-full object-cover- shadow-sm absolute inset-0 opacity-100 transition-opacity duration-1000"
-          style="object-fit: cover; object-position: center;"
+          class="carousel-image absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none
+                 opacity-100 transition-opacity duration-700 ease-in-out"
+          loading="eager"
+          decoding="async"
         />
         <img
           src={me2.src}
           alt="Nicolai Schou"
-          class="carousel-image w-full h-full object-cover object-center shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
-          style="object-fit: cover; object-position: center;"
+          class="carousel-image absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none
+                 opacity-0 transition-opacity duration-700 ease-in-out"
+          loading="lazy"
+          decoding="async"
         />
         <img
           src={me3.src}
           alt="Nicolai Schou"
-          class="carousel-image w-full h-full object-cover object-center shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
-          style="object-fit: cover; object-position: center;"
+          class="carousel-image absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none
+                 opacity-0 transition-opacity duration-700 ease-in-out"
+          loading="lazy"
+          decoding="async"
         />
       </div>
 
@@ -119,17 +127,55 @@ import SectionProjects from "../components/Section_projects.astro";
   </section>
 </div>
 
-<script>
-  let currentIndex = 0;
-  const images = document.querySelectorAll(
-    ".carousel-image",
-  ) as NodeListOf<HTMLImageElement>;
+<script type="module">
+  // Runs on Netlify as plain client JS (no TypeScript)
+  document.addEventListener("DOMContentLoaded", () => {
+    const carousel = document.getElementById("image-carousel");
+    if (!carousel) return;
 
-  function switchImage() {
-    images[currentIndex].style.opacity = "0";
-    currentIndex = (currentIndex + 1) % images.length;
-    images[currentIndex].style.opacity = "1";
-  }
+    const images = Array.from(carousel.querySelectorAll(".carousel-image"));
+    if (images.length <= 1) return;
 
-  setInterval(switchImage, 10000);
+    let currentIndex = 0;
+    let timerId = null;
+    const intervalMs = 8000;
+
+    const show = (i) => {
+      images.forEach((img, idx) => {
+        img.style.opacity = idx === i ? "1" : "0";
+      });
+    };
+
+    const start = () => {
+      stop();
+      timerId = window.setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        show(currentIndex);
+      }, intervalMs);
+    };
+
+    const stop = () => {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    };
+
+    // Respect reduced motion
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!media.matches) start();
+    media.addEventListener?.("change", (e) => {
+      if (e.matches) stop();
+      else start();
+    });
+
+    // Pause when tab is hidden
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else if (!media.matches) start();
+    });
+
+    // Ensure first frame is correct
+    show(0);
+  });
 </script>
