@@ -25,24 +25,27 @@ import SectionProjects from "../components/Section_projects.astro";
         </Heading>
       </div>
       <div
-        class="w-full xl:w-2/5 flex-shrink-0 h-64 xl:h-auto intersect intersect:animate-fade-right animate-duration-600 relative"
+        class="w-full flex-shrink-0 h-100 xl:h-auto intersect intersect:animate-fade-right animate-duration-600 relative overflow-hidden rounded-md lg:rounded-lg"
         style="animation-delay: 80ms"
         id="image-carousel"
       >
         <img
           src={me.src}
           alt="Nicolai Schou"
-          class="carousel-image w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm absolute inset-0 opacity-100 transition-opacity duration-1000"
+          class="carousel-image w-full h-full object-cover shadow-sm absolute inset-0 opacity-100 transition-opacity duration-1000"
+          style="object-fit: cover; object-position: center;"
         />
         <img
           src={me2.src}
           alt="Nicolai Schou"
-          class="carousel-image w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
+          class="carousel-image w-full h-full object-cover object-center shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
+          style="object-fit: cover; object-position: center;"
         />
         <img
           src={me3.src}
           alt="Nicolai Schou"
-          class="carousel-image w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
+          class="carousel-image w-full h-full object-cover object-center shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
+          style="object-fit: cover; object-position: center;"
         />
       </div>
 
@@ -125,7 +128,9 @@ import SectionProjects from "../components/Section_projects.astro";
 
 <script>
   let currentIndex = 0;
-  const images = document.querySelectorAll(".carousel-image");
+  const images = document.querySelectorAll(
+    ".carousel-image",
+  ) as NodeListOf<HTMLImageElement>;
 
   function switchImage() {
     images[currentIndex].style.opacity = "0";
