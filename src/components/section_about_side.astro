@@ -26,7 +26,7 @@ import LinkedIn from "../assets/Linkedin.svg";
     </div>
 
     <div
-      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-20 lg:mt-auto"
+      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-12 lg:mt-auto"
       data-reveal
     >
       <Heading
@@ -38,19 +38,23 @@ import LinkedIn from "../assets/Linkedin.svg";
       </Heading>
 
       <div class="grid gap-4 mb-4 lg:mb-6">
-        <Button variant="privateMail" />
-        <Button variant="workMail" />
-        <Button variant="call" />
+        <div class="hover:opacity-75 transition-opacity">
+          <Button variant="privateMail" />
+        </div>
+        <div class="hover:opacity-75 transition-opacity">
+          <Button variant="workMail" />
+        </div>
+        <div class="hover:opacity-75 transition-opacity">
+          <Button variant="call" />
+        </div>
       </div>
 
-      <div
-        class="pt-3 border-t border-white/10 intersect intersect:animate-fade-up animate-duration-500"
-      >
+      <div class="pt-3 border-t border-white/10">
         <Heading
           htmlheading="h3"
-          type="div_heading"
+          type="list_heading"
           font="display1"
-          stylingclasses="text-text-white tracking-wider text-base lg:text-lg uppercase mb-3"
+          stylingclasses="text-text-white tracking-wider uppercase mb-4"
         >
           Følg mig
         </Heading>
@@ -59,8 +63,7 @@ import LinkedIn from "../assets/Linkedin.svg";
             href="https://www.instagram.com/n.schousen/"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:opacity-90 transition-opacity intersect intersect:animate-fade-up animate-duration-500"
-            style="animation-delay: 60ms"
+            class="hover:opacity-75 transition-opacity"
             aria-label="Instagram"
           >
             <img
@@ -73,8 +76,7 @@ import LinkedIn from "../assets/Linkedin.svg";
             href="https://www.linkedin.com/in/niscdesign/"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:opacity-90 transition-opacity intersect intersect:animate-fade-up animate-duration-500"
-            style="animation-delay: 120ms"
+            class="hover:opacity-75 transition-opacity"
             aria-label="LinkedIn"
           >
             <img
@@ -87,8 +89,7 @@ import LinkedIn from "../assets/Linkedin.svg";
             href="https://www.facebook.com/nschousen"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:opacity-90 transition-opacity intersect intersect:animate-fade-up animate-duration-500"
-            style="animation-delay: 180ms"
+            class="hover:opacity-75 transition-opacity"
             aria-label="Facebook"
           >
             <img
@@ -116,7 +117,7 @@ import LinkedIn from "../assets/Linkedin.svg";
     </div>
 
     <div
-      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mt-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-20"
+      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mt-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-12"
       data-reveal
     >
       <Skills />

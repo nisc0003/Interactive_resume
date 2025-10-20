@@ -80,7 +80,7 @@ const skills = [
         <article
           x-data="{ expanded: false }"
           class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out bg-bg1 rounded-lg overflow-hidden border border-white/8 hover:border-white/20 transition-all duration-300 group"
-          style={`animation-delay: ${index * 80}ms;`}
+          style={`animation-delay: ${60 + index * 70}ms;`}
         >
           <button
             @click="expanded = !expanded"
@@ -148,7 +148,7 @@ const skills = [
                   htmlheading="h4"
                   type="card_heading"
                   font="display2"
-                  stylingclasses="text-text-white/90 mb-3 text-sm lg:text-base"
+                  stylingclasses="text-text-white/90 mb-3"
                 >
                   {skill.fullTitle}
                 </Heading>
@@ -161,7 +161,7 @@ const skills = [
                       />
                       <Text
                         teksttype="konsultativ"
-                        stylingclasses="text-text-white/80 text-sm lg:text-sm my-0 leading-relaxed flex-1"
+                        stylingclasses="text-text-white/80 my-0 leading-relaxed flex-1"
                       >
                         {item}
                       </Text>

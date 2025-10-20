@@ -25,11 +25,23 @@ const hoverTexts = {
   call: "61 66 11 26",
   download: "PDF ↓",
 };
+const animationDelays = {
+  privateMail: "0ms",
+  workMail: "100ms",
+  call: "200ms",
+  download: "300ms",
+};
+const animationMap = {
+  privateMail: "intersect:animate-fade-up",
+  workMail: "intersect:animate-fade-up",
+  call: "intersect:animate-fade-up",
+  download: "intersect:animate-fade-up",
+};
 ---
 
 <div
-  class="w-full intersect intersect:animate-fade-up animate-duration-500"
-  style={`animation-delay: ${variant === "privateMail" ? "0ms" : variant === "workMail" ? "100ms" : variant === "call" ? "200ms" : "300ms"}`}
+  class={`w-full intersect ${animationMap[variant] || "intersect:animate-fade-up"} animate-duration-500`}
+  style={`animation-delay: ${animationDelays[variant] || "0ms"}`}
 >
   {
     variant === "privateMail" && (
