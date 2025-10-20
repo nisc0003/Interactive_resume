@@ -51,11 +51,6 @@
   --font-sans: "RadioCanadaBig", sans-serif;
 }
 
-<<<<<<< HEAD
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
 @layer base {
   html,
   body {
@@ -74,7 +69,9 @@
     background-color: var(--color-bg1);
   }
 }
->>>>>>> trial
 
-/* Add any project utility imports here (keep plugin config in tailwind.config.js) */
-/* Example: import a small animation helper if needed, but do it via npm and tailwind config */
+@layer components {
+}
+
+@layer utilities {
+}

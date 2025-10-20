@@ -7,10 +7,10 @@ const {
   title2 = "Projekt Titel2",
   description = "Projekt beskrivelse",
   images = [],
-  accent = null,
+  accent = null, // optional: 'red'|'yellow'|'green'|'blue'|'purple'|'orange'
 } = Astro.props;
 
-/* accents */
+/* pick accent class: use provided accent or derive from title for variety */
 const ACCENTS = {
   red: "bg-[var(--color-accent_red)]",
   yellow: "bg-[var(--color-accent_yellow)]",
@@ -32,9 +32,9 @@ const accentClass =
 ---
 
 <article
-  class="relative max-w-5xl mx-auto rounded-xl px-4 md:px-6 lg:px-10 py-4 md:py-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start border border-white/6 shadow-md transition-all duration-200 overflow-hidden"
+  class="relative max-w-5xl mx-auto bg-bg2/55 backdrop-blur-sm rounded-xl px-4 md:px-6 lg:px-10 py-4 md:py-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start
+         border border-white/6 shadow-md transition-all duration-200 will-change-transform overflow-hidden cursor-default"
   aria-label={title}
-  data-card-carousel
 >
   <div
     class={`absolute left-0 top-0 bottom-0 w-1 ${accentClass} opacity-90`}
@@ -42,10 +42,6 @@ const accentClass =
   >
   </div>
 
-<<<<<<< HEAD
-  <!-- Image panel (KEEP loading and object-cover as requested) -->
-=======
->>>>>>> trial
   <div
     class="relative w-full rounded-lg overflow-hidden h-56 md:h-64 flex-shrink-0 flex items-center justify-center"
   >
@@ -93,88 +89,40 @@ const accentClass =
     <Heading
       htmlheading="h4"
       type="card_heading"
-<<<<<<< HEAD
-      stylingclasses="text-text-white/90 text-sm md:text-base">{title2}</Heading
-=======
       stylingclasses="text-text-white/90"
->>>>>>> trial
     >
+      {title2}
+    </Heading>
 
-<<<<<<< HEAD
-    <Text
-      stylingclasses="text-text-white/95 text-sm md:text-base leading-relaxed"
-      >{description}</Text
-    >
-=======
     <Text stylingclasses="text-text-white/95 leading-relaxed">
       {description}
     </Text>
->>>>>>> trial
 
-    <div class="mt-auto flex gap-3 items-center"><slot /></div>
+    <div class="mt-auto flex gap-3 items-center">
+      <slot />
+    </div>
   </div>
 </article>
 
 <script is:inline>
   (function () {
-    // find the script node safely and the associated card - fallback to first matching data attribute
-    const scriptNode =
-      document.currentScript || document.querySelector("script[is\\:inline]");
-    const card = scriptNode
-      ? scriptNode.previousElementSibling ||
-        document.querySelector("[data-card-carousel]")
-      : document.querySelector("[data-card-carousel]");
+    const card = document.currentScript.previousElementSibling;
     if (!card) return;
 
     const images = Array.from(card.querySelectorAll("[data-image]"));
     if (images.length <= 1) return;
 
     let currentIndex = 0;
-    let intervalId = null;
 
     images.forEach((img, i) => {
       img.style.transition = "opacity 700ms ease-in-out";
       img.style.opacity = i === 0 ? "1" : "0";
     });
 
-    function start() {
-      if (intervalId) return;
-      intervalId = setInterval(() => {
-        images[currentIndex].style.opacity = "0";
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].style.opacity = "1";
-      }, 4500);
-    }
-
-    function stop() {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
-    }
-
-    // pause when offscreen
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) start();
-          else stop();
-        });
-      },
-      { threshold: 0.1 },
-    );
-
-    io.observe(card);
-
-    // cleanup if card removed or on page unload
-    const mo = new MutationObserver(() => {
-      if (!document.body.contains(card)) {
-        stop();
-        io.disconnect();
-        mo.disconnect();
-      }
-    });
-    mo.observe(document, { childList: true, subtree: true });
-    window.addEventListener("beforeunload", stop, { passive: true });
+    setInterval(() => {
+      images[currentIndex].style.opacity = "0";
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].style.opacity = "1";
+    }, 4500);
   })();
 </script>
