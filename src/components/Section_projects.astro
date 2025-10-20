@@ -19,52 +19,67 @@ import starfeud2 from "../assets/images/star_feud_2.webp";
 import starfeud3 from "../assets/images/star_feud_3.webp";
 ---
 
-<section class="space-y-6 px-4 md:px-8 lg:px-12 py-8">
-  <Heading
-    htmlheading="h3"
-    type="section_heading"
-    stylingclasses="text-text-white mb-4 text-center mb-20"
+<section class="space-y-9 md:space-y-12 px-4 md:px-8 lg:px-12 py-10 md:py-14">
+  <div class="max-w-5xl mx-auto px-4 md:px-6 lg:px-10">
+    <Heading
+      htmlheading="h3"
+      type="section_heading"
+      stylingclasses="text-text-white mb-9 md:mb-10"
+    >
+      Eksempler fra projekter
+    </Heading>
+  </div>
+
+  <div
+    class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out"
+    style="animation-delay: 60ms"
   >
-    Eksempler fra projekter
-  </Heading>
-  <!-- AleFarm Projekt (purple) -->
-  <Card
-    title="AleFarm Platform"
-    title2="2 Sem. Eksamensprojekt - Alefarm Brewing"
-    description="Som en del af et team udviklede jeg forslag til en ny digital løsning for Alefarm Brewing. Fokus var på at skabe en identitet, der kunne understøtte virksomhedens værdier og samtidig styrke deres synlighed og brugeroplevelse."
-    images={[
-      { src: alefarm1.src, alt: "AleFarm visning 1" },
-      { src: alefarm2.src, alt: "AleFarm visning 2" },
-      { src: alefarm3.src, alt: "AleFarm visning 3" },
-      { src: alefarm4.src, alt: "AleFarm visning 4" },
-    ]}
-    accent="purple"
-  />
+    <Card
+      title="AleFarm Platform"
+      title2="2 Sem. Eksamensprojekt - Alefarm Brewing"
+      description="Som en del af et team udviklede jeg forslag til en ny digital løsning for Alefarm Brewing. Fokus var på at skabe en identitet, der kunne understøtte virksomhedens værdier og samtidig styrke deres synlighed og brugeroplevelse."
+      images={[
+        { src: alefarm1.src, alt: "AleFarm visning 1" },
+        { src: alefarm2.src, alt: "AleFarm visning 2" },
+        { src: alefarm3.src, alt: "AleFarm visning 3" },
+        { src: alefarm4.src, alt: "AleFarm visning 4" },
+      ]}
+      accent="purple"
+    />
+  </div>
 
-  <!-- CircleLab Projekt (orange) -->
-  <Card
-    title="CircularLab Projekt"
-    title2="2 Sem. Kunde case - circular Lab - KEA"
-    description="Projektet handlede om at formidle viden om cirkulær økonomi på en engagerende måde. Vi arbejdede med, hvordan komplekse budskaber kan oversættes til en digital løsning, der gør indholdet både tilgængeligt og visuelt interessant for målgruppen."
-    images={[
-      { src: circlelab1.src, alt: "CircleLab visning 1" },
-      { src: circlelab2.src, alt: "CircleLab visning 2" },
-      { src: circlelab3.src, alt: "CircleLab visning 3" },
-      { src: circlelab4.src, alt: "CircleLab visning 4" },
-    ]}
-    accent="orange"
-  />
+  <div
+    class="intersect intersect:animate-fade-right animate-duration-600 animate-ease-out"
+    style="animation-delay: 120ms"
+  >
+    <Card
+      title="CircularLab Projekt"
+      title2="2 Sem. Kunde case - circular Lab - KEA"
+      description="Projektet handlede om at formidle viden om cirkulær økonomi på en engagerende måde. Vi arbejdede med, hvordan komplekse budskaber kan oversættes til en digital løsning, der gør indholdet både tilgængeligt og visuelt interessant for målgruppen."
+      images={[
+        { src: circlelab1.src, alt: "CircleLab visning 1" },
+        { src: circlelab2.src, alt: "CircleLab visning 2" },
+        { src: circlelab3.src, alt: "CircleLab visning 3" },
+        { src: circlelab4.src, alt: "CircleLab visning 4" },
+      ]}
+      accent="orange"
+    />
+  </div>
 
-  <!-- Animations projekt (yellow) -->
-  <Card
-    title="Animations spil"
-    title2="1 Sem. Tema - Animations Project"
-    description="Her arbejdede jeg med kreativitet og interaktive elementer gennem animation. Ved brug af HTML, CSS og JavaScript, kombineret med figurer designet i Illustrator byggede jeg et lille parodispil inspireret af Star Wars, som jeg kaldte Star Feud."
-    images={[
-      { src: starfeud1.src, alt: "Starfeud visning 1" },
-      { src: starfeud2.src, alt: "Starfeud visning 2" },
-      { src: starfeud3.src, alt: "Starfeud visning 3" },
-    ]}
-    accent="yellow"
-  />
+  <div
+    class="intersect intersect:animate-fade-left animate-duration-600 animate-ease-out"
+    style="animation-delay: 180ms"
+  >
+    <Card
+      title="Animations spil"
+      title2="1 Sem. Tema - Animations Project"
+      description="Her arbejdede jeg med kreativitet og interaktive elementer gennem animation. Ved brug af HTML, CSS og JavaScript, kombineret med figurer designet i Illustrator byggede jeg et lille parodispil inspireret af Star Wars, som jeg kaldte Star Feud."
+      images={[
+        { src: starfeud1.src, alt: "Starfeud visning 1" },
+        { src: starfeud2.src, alt: "Starfeud visning 2" },
+        { src: starfeud3.src, alt: "Starfeud visning 3" },
+      ]}
+      accent="yellow"
+    />
+  </div>
 </section>

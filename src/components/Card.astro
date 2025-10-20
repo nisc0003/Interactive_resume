@@ -36,14 +36,16 @@ const accentClass =
   aria-label={title}
   data-card-carousel
 >
-  <!-- left accent stripe -->
   <div
     class={`absolute left-0 top-0 bottom-0 w-1 ${accentClass} opacity-90`}
     aria-hidden="true"
   >
   </div>
 
+<<<<<<< HEAD
   <!-- Image panel (KEEP loading and object-cover as requested) -->
+=======
+>>>>>>> trial
   <div
     class="relative w-full rounded-lg overflow-hidden h-56 md:h-64 flex-shrink-0 flex items-center justify-center"
   >
@@ -65,7 +67,6 @@ const accentClass =
     </div>
   </div>
 
-  <!-- Content panel -->
   <div class="flex flex-col gap-3 md:gap-4">
     <div class="flex items-center gap-3 w-full">
       <div class="min-w-0 flex-1">
@@ -73,7 +74,7 @@ const accentClass =
           htmlheading="h3"
           type="div_heading"
           font="display1"
-          stylingclasses="text-text-white text-lg md:text-xl font-semibold leading-snug truncate"
+          stylingclasses="text-text-white leading-snug truncate"
         >
           {title}
         </Heading>
@@ -92,13 +93,23 @@ const accentClass =
     <Heading
       htmlheading="h4"
       type="card_heading"
+<<<<<<< HEAD
       stylingclasses="text-text-white/90 text-sm md:text-base">{title2}</Heading
+=======
+      stylingclasses="text-text-white/90"
+>>>>>>> trial
     >
 
+<<<<<<< HEAD
     <Text
       stylingclasses="text-text-white/95 text-sm md:text-base leading-relaxed"
       >{description}</Text
     >
+=======
+    <Text stylingclasses="text-text-white/95 leading-relaxed">
+      {description}
+    </Text>
+>>>>>>> trial
 
     <div class="mt-auto flex gap-3 items-center"><slot /></div>
   </div>
