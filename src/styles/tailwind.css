@@ -74,4 +74,6 @@
 }
 
 @layer utilities {
+  .font-display1 { font-family: var(--font-display1), sans-serif; }
+  .font-display2 { font-family: var(--font-display2), sans-serif; }
 }
