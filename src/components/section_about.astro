@@ -5,6 +5,7 @@ import Text from "../components/Text.astro";
 import Facebook from "../assets/Facebook.svg";
 import Instagram from "../assets/Instagram.svg";
 import LinkedIn from "../assets/Linkedin.svg";
+import Paperclip from "../assets/Paperclip.svg";
 import SectionProjects from "../components/Section_projects.astro";
 ---
 
@@ -13,7 +14,9 @@ import SectionProjects from "../components/Section_projects.astro";
     <div
       class="w-full max-w-5xl bg-bg2/50 rounded-lg p-6 lg:p-10 shadow-lg flex flex-col xl:flex-row gap-6"
     >
-      <div class="w-full xl:w-2/5 flex-shrink-0 h-64 xl:h-auto">
+      <div
+        class="w-full xl:w-2/5 flex-shrink-0 h-64 xl:h-auto intersect intersect:animate-fade-up animate-duration-600"
+      >
         <img
           src={me.src}
           alt="Nicolai Schou"
@@ -22,7 +25,10 @@ import SectionProjects from "../components/Section_projects.astro";
       </div>
 
       <div class="flex-1 flex flex-col justify-between">
-        <div>
+        <div
+          class="intersect intersect:animate-fade-up animate-duration-600"
+          style="animation-delay: 80ms"
+        >
           <Heading
             htmlheading="h2"
             type="section_heading"
@@ -31,9 +37,14 @@ import SectionProjects from "../components/Section_projects.astro";
             Hvem er Jeg som Designer
           </Heading>
 
-          <h3 class="text-2xl text-text-white font-semibold mb-3">
+          <Heading
+            htmlheading="h3"
+            type="div_heading"
+            font="display1"
+            stylingclasses="text-text-white text-2xl mb-3"
+          >
             Nicolai Schou
-          </h3>
+          </Heading>
 
           <Text
             teksttype="brødtekst"
@@ -57,36 +68,33 @@ import SectionProjects from "../components/Section_projects.astro";
           </Text>
         </div>
 
-        <div class="mt-6">
-          <h4 class="text-sm text-text-white uppercase mb-3 tracking-wider">
-            Følg mig
-          </h4>
-          <div class="flex space-x-3">
-            <a
-              href="https://www.instagram.com/n.schousen/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-white/10 hover:bg-white/20 p-2 rounded-md flex items-center justify-center"
+        <div
+          class="mt-6 intersect intersect:animate-fade-up animate-duration-600"
+          style="animation-delay: 160ms"
+        >
+          <!-- Row with label and Download CV button (responsive) -->
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4"
+          >
+            <span
+              class="text-xs sm:text-sm uppercase tracking-wider text-text-white/80"
+              >Download mit CV her</span
             >
-              <img src={Instagram.src} alt="Instagram" class="w-8 h-8" />
-            </a>
-
             <a
-              href="https://www.linkedin.com/in/niscdesign/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-white/10 hover:bg-white/20 p-2 rounded-md flex items-center justify-center"
+              href="/cv.pdf"
+              download
+              class="group w-full sm:w-auto h-14 inline-flex items-center rounded-xl transition-all duration-300 border border-white/20 text-white bg-bg2 hover:bg-white hover:text-bg1 hover:border-white overflow-hidden px-4"
             >
-              <img src={LinkedIn.src} alt="LinkedIn" class="w-8 h-8" />
-            </a>
-
-            <a
-              href="https://www.facebook.com/nschousen"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-white/10 hover:bg-white/20 p-2 rounded-md flex items-center justify-center"
-            >
-              <img src={Facebook.src} alt="Facebook" class="w-8 h-8" />
+              <div
+                class="w-9 h-9 rounded-full flex items-center justify-center bg-accent_blue transition-transform duration-300 group-hover:scale-110 flex-none mr-3"
+              >
+                <img src={Paperclip.src} alt="Download" class="w-4 h-4" />
+              </div>
+              <span
+                class="flex-1 text-center text-sm lg:text-base font-display1"
+                >Download CV</span
+              >
+              <div class="w-9 h-9 flex-none"></div>
             </a>
           </div>
         </div>

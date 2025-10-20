@@ -2,60 +2,125 @@
 import Heading from "./Heading.astro";
 import Button from "./Button.astro";
 import Skills from "./Skills.astro";
+import Facebook from "../assets/Facebook.svg";
+import Instagram from "../assets/Instagram.svg";
+import LinkedIn from "../assets/Linkedin.svg";
 ---
 
 <div
-  class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col lg:justify-between lg:min-h-screen"
+  class="bg-bg2 lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:rounded-lg flex flex-col lg:min-h-screen"
   x-data="sidebar"
   x-init="init()"
 >
-  <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
-    <Heading
-      htmlheading="h2"
-      type="div_heading"
-      font="display2"
-      stylingclasses="text-text-white lg:text-left mb-6"
-    >
-      Studerende med passion for at skabe intuitive interfaces
-    </Heading>
-  </div>
+  <!-- First viewport: intro (top) + contact (bottom) -->
+  <div class="flex flex-col lg:justify-between lg:min-h-screen">
+    <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
+      <Heading
+        htmlheading="h2"
+        type="div_heading"
+        font="display2"
+        stylingclasses="text-text-white lg:text-left mb-6"
+      >
+        Studerende med passion for at skabe intuitive interfaces
+      </Heading>
+    </div>
 
-  <div
-    class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-0 flex-shrink-0 lg:bg-bg1 mb-20 lg:mt-auto"
-    data-reveal
-  >
-    <Heading
-      htmlheading="h2"
-      type="section_heading"
-      stylingclasses="text-text-white mb-4 lg:mb-6"
+    <div
+      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-20 lg:mt-auto"
+      data-reveal
     >
-      Kontakt mig
-    </Heading>
+      <Heading
+        htmlheading="h2"
+        type="section_heading"
+        stylingclasses="text-text-white mb-4 lg:mb-6"
+      >
+        Kontakt mig
+      </Heading>
 
-    <div class="grid gap-4">
-      <Button variant="privateMail" />
-      <Button variant="workMail" />
-      <Button variant="call" />
-      <Button variant="download" />
+      <div class="grid gap-4 mb-4 lg:mb-6">
+        <Button variant="privateMail" />
+        <Button variant="workMail" />
+        <Button variant="call" />
+      </div>
+
+      <div
+        class="pt-3 border-t border-white/10 intersect intersect:animate-fade-up animate-duration-500"
+      >
+        <Heading
+          htmlheading="h3"
+          type="div_heading"
+          font="display1"
+          stylingclasses="text-text-white tracking-wider text-base lg:text-lg uppercase mb-3"
+        >
+          Følg mig
+        </Heading>
+        <div class="flex items-center gap-5 sm:gap-6">
+          <a
+            href="https://www.instagram.com/n.schousen/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:opacity-90 transition-opacity intersect intersect:animate-fade-up animate-duration-500"
+            style="animation-delay: 60ms"
+            aria-label="Instagram"
+          >
+            <img
+              src={Instagram.src}
+              alt="Instagram"
+              class="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/niscdesign/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:opacity-90 transition-opacity intersect intersect:animate-fade-up animate-duration-500"
+            style="animation-delay: 120ms"
+            aria-label="LinkedIn"
+          >
+            <img
+              src={LinkedIn.src}
+              alt="LinkedIn"
+              class="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11"
+            />
+          </a>
+          <a
+            href="https://www.facebook.com/nschousen"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:opacity-90 transition-opacity intersect intersect:animate-fade-up animate-duration-500"
+            style="animation-delay: 180ms"
+            aria-label="Facebook"
+          >
+            <img
+              src={Facebook.src}
+              alt="Facebook"
+              class="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11"
+            />
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
-    <Heading
-      htmlheading="h2"
-      type="div_heading"
-      font="display2"
-      stylingclasses="text-text-white lg:text-left mb-6"
-    >
-      Digital Designer under konstruktion
-    </Heading>
-  </div>
+  <!-- Below the fold content as its own viewport -->
+  <div class="flex flex-col lg:justify-between lg:min-h-screen">
+    <div class="p-6 lg:p-8 flex-shrink-0" data-reveal>
+      <Heading
+        htmlheading="h2"
+        type="div_heading"
+        font="display2"
+        stylingclasses="text-text-white lg:text-left mb-6"
+      >
+        Digital Designer under konstruktion
+      </Heading>
+    </div>
 
-  <div
-    class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:my-8 flex-shrink-0 lg:bg-bg1 mb-20 lg:mb-6"
-    data-reveal
-  >
-    <Skills />
+    <div
+      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mt-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-20"
+      data-reveal
+    >
+      <Skills />
+    </div>
   </div>
 </div>
 
