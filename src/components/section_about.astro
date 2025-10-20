@@ -1,10 +1,9 @@
 ---
 import me from "../assets/images/me_image_wide.webp";
+import me2 from "../assets/images/me.webp";
+import me3 from "../assets/images/me2.webp";
 import Heading from "../components/Heading.astro";
 import Text from "../components/Text.astro";
-import Facebook from "../assets/Facebook.svg";
-import Instagram from "../assets/Instagram.svg";
-import LinkedIn from "../assets/Linkedin.svg";
 import Paperclip from "../assets/Paperclip.svg";
 import SectionProjects from "../components/Section_projects.astro";
 ---
@@ -26,13 +25,24 @@ import SectionProjects from "../components/Section_projects.astro";
         </Heading>
       </div>
       <div
-        class="w-full xl:w-2/5 flex-shrink-0 h-64 xl:h-auto intersect intersect:animate-fade-right animate-duration-600"
+        class="w-full xl:w-2/5 flex-shrink-0 h-64 xl:h-auto intersect intersect:animate-fade-right animate-duration-600 relative"
         style="animation-delay: 80ms"
+        id="image-carousel"
       >
         <img
           src={me.src}
           alt="Nicolai Schou"
-          class="w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm"
+          class="carousel-image w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm absolute inset-0 opacity-100 transition-opacity duration-1000"
+        />
+        <img
+          src={me2.src}
+          alt="Nicolai Schou"
+          class="carousel-image w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
+        />
+        <img
+          src={me3.src}
+          alt="Nicolai Schou"
+          class="carousel-image w-full h-full object-cover rounded-md lg:rounded-lg shadow-sm absolute inset-0 opacity-0 transition-opacity duration-1000"
         />
       </div>
 
@@ -76,7 +86,6 @@ import SectionProjects from "../components/Section_projects.astro";
           class="mt-6 intersect intersect:animate-fade-up animate-duration-600"
           style="animation-delay: 160ms"
         >
-          <!-- Row with label and Download CV button (responsive) -->
           <div
             class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4"
           >
@@ -113,3 +122,16 @@ import SectionProjects from "../components/Section_projects.astro";
     <SectionProjects />
   </section>
 </div>
+
+<script>
+  let currentIndex = 0;
+  const images = document.querySelectorAll(".carousel-image");
+
+  function switchImage() {
+    images[currentIndex].style.opacity = "0";
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.opacity = "1";
+  }
+
+  setInterval(switchImage, 10000);
+</script>
