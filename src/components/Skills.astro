@@ -1,5 +1,9 @@
----
+﻿---
 import Heading from "../components/Heading.astro";
+import Blue from "../assets/Star_blue.svg";
+import Green from "../assets/Star_green.svg";
+import Yellow from "../assets/Star_yellow.svg";
+import Red from "../assets/Star_red.svg";
 import Text from "../components/Text.astro";
 import { Image } from "astro:assets";
 import Blue from "../assets/Star_blue.svg";
@@ -65,7 +69,7 @@ const skills = [
 ];
 ---
 
-<div class="w-full max-w-5xl mx-auto px-4  ">
+<div class="w-full max-w-5xl mx-auto px-4 lg:px-6 mb-8">
   <div class="flex flex-col gap-4">
     <Heading
       htmlheading="h2"
@@ -79,13 +83,23 @@ const skills = [
       skills.map((skill, index) => (
         <article
           x-data="{ expanded: false }"
+<<<<<<< HEAD
+          class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out rounded-lg overflow-hidden border border-white/8 hover:border-white/20 transition-all duration-300 group"
+          style={`animation-delay: ${index * 80}ms;`}
+=======
           class="intersect intersect:animate-fade-up animate-duration-600 animate-ease-out bg-bg1 rounded-lg overflow-hidden border border-white/8 hover:border-white/20 transition-all duration-300 group"
           style={`animation-delay: ${60 + index * 70}ms;`}
+>>>>>>> trial
         >
           <button
+            type="button"
             @click="expanded = !expanded"
+<<<<<<< HEAD
+            class="w-full flex flex-col gap-3 text-left px-4 py-4 lg:px-6 lg:py-5 hover:bg-white/3 transition-colors duration-200"
+=======
             :aria-expanded="expanded.toString()"
             class="w-full flex flex-col gap-2 text-left px-4 py-4 lg:px-6 lg:py-5 hover:bg-white/3 transition-colors duration-200"
+>>>>>>> trial
           >
             <div class="flex flex-wrap items-start md:items-center justify-between gap-x-3 gap-y-2 w-full">
               <div class="min-w-0 flex items-center gap-3">
@@ -97,8 +111,13 @@ const skills = [
                 </span>
               </div>
 
+<<<<<<< HEAD
+              <div class="flex items-center gap-2 flex-shrink-0">
+                <div class="flex items-center gap-1" aria-hidden="true">
+=======
               <div class="flex items-center gap-2 flex-shrink-0 order-last md:order-none w-full md:w-auto">
                 <div class="flex items-center gap-1">
+>>>>>>> trial
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Image
                       src={i < skill.stars ? skill.starColor : Blue}
@@ -112,6 +131,8 @@ const skills = [
                 <span class="text-text-white/40 text-xs lg:text-sm font-sans flex-shrink-0">
                   {skill.stars}/5
                 </span>
+<<<<<<< HEAD
+=======
 
                 <svg
                   aria-hidden="true"
@@ -128,6 +149,7 @@ const skills = [
                 </svg>
 
                 <span class="sr-only">Vis detaljer</span>
+>>>>>>> trial
               </div>
             </div>
           </button>
@@ -175,10 +197,10 @@ const skills = [
                     stylingclasses="text-text-white/50 text-sm my-0 leading-relaxed"
                   >
                     {skill.stars === 5
-                      ? "Meget erfaren gennem projekter og selvstændigt arbejde"
+                      ? "Meget erfaren gennem projekter og selvstÃ¦ndigt arbejde"
                       : skill.stars === 4
                         ? "Solid erfaring fra studiet og egne projekter"
-                        : "Grundlæggende kendskab og praktisk erfaring"}
+                        : "GrundlÃ¦ggende kendskab og praktisk erfaring"}
                   </Text>
                 </div>
               </div>

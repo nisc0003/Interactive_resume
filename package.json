@@ -13,7 +13,6 @@
     "@astrojs/alpinejs": "^0.4.9",
     "@types/alpinejs": "^3.13.11",
     "alpinejs": "^3.15.0",
-    "astro": "^5.1.10",
     "motion": "^12.0.6",
     "tailwindcss-intersect": "^2.2.0"
   },
@@ -21,6 +20,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.14",
     "@tailwindcss/vite": "^4.1.14",
+    "astro": "^5.14.6",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "tailwindcss": "^4.1.14",
