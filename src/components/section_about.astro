@@ -19,7 +19,7 @@ import SectionProjects from "../components/Section_projects.astro";
       <div class="w-full xl:basis-full">
         <Heading
           htmlheading="h2"
-          type="hero2"
+          type="section_heading"
           stylingclasses="text-text-white mb-4"
         >
           Hvem er Jeg som Designer
@@ -43,7 +43,7 @@ import SectionProjects from "../components/Section_projects.astro";
         >
           <Heading
             htmlheading="h3"
-            type="section_heading"
+            type="div_heading"
             font="display1"
             stylingclasses="text-text-white mb-3"
           >
@@ -80,10 +80,13 @@ import SectionProjects from "../components/Section_projects.astro";
           <div
             class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4"
           >
-            <span
-              class="text-xs sm:text-sm uppercase tracking-wider text-text-white/80"
-              >Download mit CV her</span
+            <Heading
+              htmlheading="h4"
+              type="list_heading"
+              stylingclasses="text-text-white"
             >
+              Download mit CV her
+            </Heading>
             <a
               href="/cv.pdf"
               download

@@ -68,8 +68,8 @@ const skills = [
 <div class="w-full max-w-5xl mx-auto px-4  ">
   <div class="flex flex-col gap-4">
     <Heading
-      htmlheading="h2"
-      type="section_heading"
+      htmlheading="h3"
+      type="div_heading"
       stylingclasses="text-text-white mb-2 px-0"
     >
       Kompetencer
@@ -92,9 +92,14 @@ const skills = [
                 <div
                   class={`w-2.5 h-2.5 lg:w-3 lg:h-3 ${skill.color} rounded-full flex-shrink-0`}
                 />
-                <span class="text-text-white text-base lg:text-lg font-display2 leading-tight">
+                <Heading
+                  htmlheading="h4"
+                  type="list_heading"
+                  font="display2"
+                  stylingclasses="text-text-white"
+                >
                   {skill.title}
-                </span>
+                </Heading>
               </div>
 
               <div class="flex items-center gap-2 flex-shrink-0 order-last md:order-none w-full md:w-auto">
