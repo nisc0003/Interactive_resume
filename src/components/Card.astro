@@ -7,10 +7,9 @@ const {
   title2 = "Projekt Titel2",
   description = "Projekt beskrivelse",
   images = [],
-  accent = null, // optional: 'red'|'yellow'|'green'|'blue'|'purple'|'orange'
+  accent = null,
 } = Astro.props;
 
-/* pick accent class: use provided accent or derive from title for variety */
 const ACCENTS = {
   red: "bg-[var(--color-accent_red)]",
   yellow: "bg-[var(--color-accent_yellow)]",
