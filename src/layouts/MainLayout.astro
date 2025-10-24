@@ -1,6 +1,5 @@
 ---
 import Footer from "../components/Footer.astro";
-import PuzzleHero from "../components/PuzzleHero.astro";
 import "../styles/tailwind.css";
 const { title } = Astro.props;
 ---
@@ -44,11 +43,6 @@ const { title } = Astro.props;
     ></script>
   </head>
   <body class="">
-    <PuzzleHero
-      title="Nicolai Schou"
-      subtitle="Multimediedesigner & Frontend Udvikler"
-    />
-
     <slot />
     <Footer />
   </body>
