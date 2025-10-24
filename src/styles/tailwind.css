@@ -68,10 +68,38 @@
     color: var(--color-text-white);
     background-color: var(--color-bg1);
   }
+
+  /* Page inline margin that increases with viewport width
+     Used to keep comfortable side space when users zoom out (viewport grows) */
+  :root {
+    --page-inline: clamp(1rem, 6vw, 7.5rem);
+  }
 }
 
 @layer components {
 }
 
 @layer utilities {
+}
+
+/* Fluid scaling: keep <=1920px exactly as-is; scale up above */
+@layer base {
+  /* Baseline size: all Tailwind rems derive from this */
+  html {
+    font-size: 16px;
+  }
+
+  /* 1920px -> 2560px: scale from 16px to 20px (~125%) */
+  @media (min-width: 1920px) and (max-width: 2559.98px) {
+    html {
+      font-size: clamp(16px, calc(16px + (100vw - 1920px) / 160), 20px);
+    }
+  }
+
+  /* >=2560px (e.g., 4K): keep at least 20px and allow slight growth to 22px by 3840px */
+  @media (min-width: 2560px) {
+    html {
+      font-size: clamp(20px, calc(20px + (100vw - 2560px) / 640), 22px);
+    }
+  }
 }

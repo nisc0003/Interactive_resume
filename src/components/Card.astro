@@ -42,7 +42,7 @@ const accentClass =
   </div>
 
   <div
-    class="relative w-full rounded-lg overflow-hidden h-56 md:h-64 flex-shrink-0 flex items-center justify-center"
+    class="relative w-full rounded-lg overflow-hidden h-56 md:h-64 lg:h-72 flex-shrink-0 flex items-center justify-center bg-bg1/40"
   >
     {
       images.map((image, index) => (
@@ -51,13 +51,13 @@ const accentClass =
           alt={image.alt}
           loading="lazy"
           data-image={index}
-          class={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
+          class={`absolute inset-0 w-full h-full object-contain object-center transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
         />
       ))
     }
 
     <div
-      class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/30 via-transparent to-transparent"
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/30 to-transparent"
     >
     </div>
   </div>

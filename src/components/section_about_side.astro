@@ -26,7 +26,8 @@ import LinkedIn from "../assets/Linkedin.svg";
     </div>
 
     <div
-      class="rounded-lg p-4 md:p-5 lg:p-12 lg:mx-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-12 lg:mt-auto"
+      <div
+      class="rounded-lg p-4 md:p-5 lg:p-10 xl:p-12 lg:mx-8 lg:mb-6 lg:bg-bg1 mb-12 lg:mt-auto lg:shrink xl:shrink-0"
       data-reveal
     >
       <Heading
@@ -37,14 +38,16 @@ import LinkedIn from "../assets/Linkedin.svg";
         Kontakt mig
       </Heading>
 
-      <div class="grid gap-4 md:gap-5 mb-4 md:mb-5 lg:mb-6">
-        <div class="hover:opacity-75 transition-opacity">
+      <div
+        class="grid gap-4 md:gap-5 mb-4 md:mb-5 lg:mb-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] justify-items-center"
+      >
+        <div class="hover:opacity-75 transition-opacity w-full max-w-[18rem]">
           <Button variant="privateMail" />
         </div>
-        <div class="hover:opacity-75 transition-opacity">
+        <div class="hover:opacity-75 transition-opacity w-full max-w-[18rem]">
           <Button variant="workMail" />
         </div>
-        <div class="hover:opacity-75 transition-opacity">
+        <div class="hover:opacity-75 transition-opacity w-full max-w-[18rem]">
           <Button variant="call" />
         </div>
       </div>
@@ -104,8 +107,8 @@ import LinkedIn from "../assets/Linkedin.svg";
   </div>
 
   <!-- Below the fold content as its own viewport -->
-  <div class="flex flex-col lg:justify-between lg:min-h-screen">
-    <div class="p-6 lg:p-8 flex-shrink-0 p-4 md:p-5 lg:p-12" data-reveal>
+  <div class="flex flex-col lg:min-h-screen">
+    <div class="p-4 md:p-5 lg:p-8 xl:p-12 flex-shrink-0" data-reveal>
       <Heading
         htmlheading="h1"
         type="hero2"
@@ -117,7 +120,7 @@ import LinkedIn from "../assets/Linkedin.svg";
     </div>
 
     <div
-      class="rounded-lg p-4 lg:p-12 lg:mx-8 lg:mt-8 lg:mb-6 flex-shrink-0 lg:bg-bg1 mb-12"
+      class="rounded-lg p-4 lg:p-10 xl:p-12 lg:mx-8 lg:mb-6 lg:bg-bg1 mb-12 lg:mt-auto"
       data-reveal
     >
       <Skills />
