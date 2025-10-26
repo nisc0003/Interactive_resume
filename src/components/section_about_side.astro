@@ -26,8 +26,7 @@ import LinkedIn from "../assets/Linkedin.svg";
     </div>
 
     <div
-      <div
-      class="rounded-lg p-4 md:p-5 lg:p-10 xl:p-12 lg:mx-8 lg:mb-6 lg:bg-bg1 mb-12 lg:mt-auto lg:shrink xl:shrink-0"
+      class="rounded-lg p-4 md:p-5 lg:p-10 xl:p-12 lg:mx-8 lg:mb-6 lg:bg-bg1 mb-12 lg:mt-auto lg:shrink xl:shrink-0 relative z-20"
       data-reveal
     >
       <Heading
@@ -39,15 +38,21 @@ import LinkedIn from "../assets/Linkedin.svg";
       </Heading>
 
       <div
-        class="grid gap-4 md:gap-5 mb-4 md:mb-5 lg:mb-6 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] justify-items-center"
+        class="grid gap-4 md:gap-6 mb-4 md:mb-5 lg:mb-6 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))] justify-items-start"
       >
-        <div class="hover:opacity-75 transition-opacity w-full max-w-[18rem]">
+        <div
+          class="hover:opacity-75 transition-opacity w-full min-w-0 max-w-full justify-self-start"
+        >
           <Button variant="privateMail" />
         </div>
-        <div class="hover:opacity-75 transition-opacity w-full max-w-[18rem]">
+        <div
+          class="hover:opacity-75 transition-opacity w-full min-w-0 max-w-full justify-self-start"
+        >
           <Button variant="workMail" />
         </div>
-        <div class="hover:opacity-75 transition-opacity w-full max-w-[18rem]">
+        <div
+          class="hover:opacity-75 transition-opacity w-full min-w-0 max-w-full justify-self-start"
+        >
           <Button variant="call" />
         </div>
       </div>
@@ -120,7 +125,7 @@ import LinkedIn from "../assets/Linkedin.svg";
     </div>
 
     <div
-      class="rounded-lg p-4 lg:p-10 xl:p-12 lg:mx-8 lg:mb-6 lg:bg-bg1 mb-12 lg:mt-auto"
+      class="rounded-lg p-4 lg:p-10 xl:p-12 lg:mx-8 lg:mb-6 lg:bg-bg1 mb-12 lg:mt-auto relative z-20"
       data-reveal
     >
       <Skills />
@@ -199,7 +204,6 @@ import LinkedIn from "../assets/Linkedin.svg";
       }
     },
 
-    // Alpine will call this when the component is removed
     destroy() {
       this._cleanup();
     },
